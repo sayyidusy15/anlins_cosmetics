@@ -1,6 +1,28 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faStarHalfStroke, faShoppingBag, faEye, faHeart } from '@fortawesome/free-solid-svg-icons';
 
+
+// Tipe untuk props StarRating
+interface StarRatingProps {
+    rating: number; // Menentukan bahwa rating harus berupa angka
+  }
+  
+  function StarRating({ rating }: StarRatingProps) {
+    return (
+      <div className="rate">
+        {[...Array(5)].map((_, index) => {
+          if (index + 1 <= Math.floor(rating)) {
+            return <FontAwesomeIcon icon={faStar} key={index} className="text-yellow-500" />;
+          } else if (index < rating) {
+            return <FontAwesomeIcon icon={faStarHalfStroke} key={index} className="text-yellow-500" />;
+          } else {
+            return null;
+          }
+        })}
+      </div>
+    );
+  }
+
 export default function ProductTab () {
     return (
         <div className="product-tab -style-2">
@@ -60,11 +82,7 @@ export default function ProductTab () {
                               <div className="product-category">eyes</div>
                               {/* Rating */}
                                     <div className="rate ">
-                                        <FontAwesomeIcon icon={faStar} className='text-yellow-500'/>
-                                        <FontAwesomeIcon icon={faStar} className='text-yellow-500'/>
-                                        <FontAwesomeIcon icon={faStar} className='text-yellow-500'/>
-                                        <FontAwesomeIcon icon={faStar} className='text-yellow-500'/>
-                                        <FontAwesomeIcon icon={faStarHalfStroke} className='text-yellow-500'/>
+                                        <StarRating rating={4.5} /> {/* Contoh rating */}
                                     </div>
                             </div>
                             {/* product title */}
