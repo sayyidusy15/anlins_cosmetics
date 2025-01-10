@@ -4,7 +4,7 @@ import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => {
     return (    
-        <div className="menu -style-3">
+        <div className="menu -style-3 ">
            <div className="container">
         <div className="menu__wrapper">
             <Link href="/index.html">
@@ -13,8 +13,8 @@ const Navbar = () => {
               <div className="navigator -white">
                 <ul>
                 <li className="relative">
-
                   {/* === Home === */}
+                 
                   <a href="">
                       Home
                       <span className="dropable-icon">
@@ -75,22 +75,34 @@ const Navbar = () => {
                         <li><a href="checkout.html">Checkout</a></li>
                         <li><a href="wishlist.html">Wish list</a></li>
                       </ul>
-                      <ul className="dropdown-menu__col -banner"><a href="shop-fullwidth-4col.html"><img src="/images/header/dropdown-menu-banner.png" alt="New product banner"/></a></ul>
+                      <ul className="dropdown-menu__col -banner">
+                        <a href="shop-fullwidth-4col.html">
+                          <img src="/images/header/dropdown-menu-banner.png" alt="New product banner"/>
+                        </a>
+                      </ul>
                     </ul>
                   </li>
-
-
+                  
+                  {/* BLOG */}
                   <li><a href="blog.html">Blog</a></li>
                   <li><a href="contact.html">Contact</a></li>
                 </ul>
               </div>
-              <div className="menu-functions -white"><a className="menu-icon -search" href="#"><img src="/images/header/search-icon-white.png" alt="Search icon"/></a>
+              <div className="menu-functions -white">
+                <a className="menu-icon -search" href="#">
+                  <img src="/images/header/search-icon-white.png" alt="Search icon"/>
+                </a>
+        
                 <div className="search-box">
                   <form>
                     <input type="text" placeholder="What are you looking for?" name="search"/>
                     <button><img src="/images/header/search-icon.png" alt="Search icon"/></button>
                   </form>
-                </div><a className="menu-icon -wishlist" href="/wishlist.html"><img src="/images/header/wishlist-icon-white.png" alt="Wishlist icon"/></a>
+                </div>
+                <a className="menu-icon -wishlist" href="/wishlist.html">
+                  <img src="/images/header/wishlist-icon-white.png" alt="Wishlist icon"/>
+                </a>
+                
                 <div className="menu-cart"><a className="menu-icon -cart" href="#"><img src="/images/header/cart-icon-white.png" alt="Wishlist icon"/><span className="cart__quantity">0</span></a>
                   <h5>Cart:<span>$100</span></h5>
                 </div><a className="menu-icon -navbar" href="#">
@@ -100,7 +112,8 @@ const Navbar = () => {
               </div>
         </div>
       </div>
-        </div>
+    </div>
+
     )
 }
 

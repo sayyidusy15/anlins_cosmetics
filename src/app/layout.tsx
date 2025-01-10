@@ -8,11 +8,11 @@ import "@/styles/jquery.modal.min.css"
 import "@/styles/slick.min.css"
 // import "@/styles/star-rating.min.css"
 
+
 // Icon
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false;
-
 
 import AppShell from "@/components/layouts/AppShell"; // Layout Component
 

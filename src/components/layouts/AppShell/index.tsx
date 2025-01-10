@@ -1,5 +1,7 @@
-import Navbar from "../navbar";
+// import Navbar from "../navbar";
 import Script from "next/script";
+import NavbarTwo from "../navbarTwo";
+import Slider from "../slider";
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
     return (
@@ -7,7 +9,11 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         <main>
             <div>
                 {children}
-                <Navbar/>
+                {/* <Navbar/> */}
+                <NavbarTwo/>
+                <div id="content">
+                  <Slider/>
+                </div>
             </div>
         </main>
         {/* script js */}
