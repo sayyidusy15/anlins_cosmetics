@@ -2,6 +2,7 @@
 import Script from "next/script";
 import NavbarTwo from "../navbarTwo";
 import Slider from "../slider";
+import ProductTab from "../productTab";
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
     return (
@@ -13,6 +14,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                 <NavbarTwo/>
                 <div id="content">
                   <Slider/>
+                  <ProductTab/>
                 </div>
             </div>
         </main>
