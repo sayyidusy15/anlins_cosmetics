@@ -27,6 +27,8 @@ export default function ProductTab () {
     return (
         <div className="product-tab -style-2">
         <div className="container">
+
+          {/* Product Tab Header */}
           <div className="product-tab__header">
             <h5>New arrivals</h5>
             <div className="product-tab-slide__header__controller">
@@ -39,11 +41,13 @@ export default function ProductTab () {
               </ul><a className="btn -white" href="shop-fullwidth-4col.html">View all</a>
             </div>
           </div>
+
+          {/* Product Tab Content */}
           <div className="product-tab__content">
             <div className="product-tab__content__wrapper">
-                {/* Card */}
               <div className="row mx-n1 mx-md-n3">
-
+                
+                {/* Card Start */}
                 <div className="col-6 col-md-3 px-1 px-md-3">
                         <div className="product ">
                             {/* Tag atau Product Tipe */}
@@ -103,13 +107,13 @@ export default function ProductTab () {
                                 <div className="product-colors__item bg-[#8B0000]"></div>
                                 <div className="product-colors__item bg-[#4169E1]"></div>
                               </div> */}
-
                             </div>
-
                           </div>
                         </div>
                 </div>
+                {/* Card End */}
 
+                
               </div>
             </div>
           </div>
