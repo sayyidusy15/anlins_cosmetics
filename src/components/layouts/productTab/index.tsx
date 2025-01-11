@@ -18,8 +18,8 @@ type Product = {
 // Tipe untuk props StarRating
 interface StarRatingProps {
     rating: number; // Menentukan bahwa rating harus berupa angka
-  }
-  function StarRating({ rating }: StarRatingProps) {
+}
+function StarRating({ rating }: StarRatingProps) {
 
     return (
       <div className="rate">
@@ -34,7 +34,7 @@ interface StarRatingProps {
         })}
       </div>
     );
-  }
+}
 
 export default function ProductTab () {
 
@@ -72,21 +72,18 @@ export default function ProductTab () {
 
           {/* Product Tab Header */}
           <div className="product-tab__header">
-            <h5>New arrivals</h5>
+            <h5>Product Terbaru</h5>
             <div className="product-tab-slide__header__controller">
-              <ul>
+              {/* <ul>
                 <li className="active"><a href="#">all</a></li>
                 <li><a href="#">eyes</a></li>
                 <li><a href="#">face</a></li>
                 <li><a href="#">lips</a></li>
                 <li><a href="#">set</a></li>
-              </ul><a className="btn -white" href="shop-fullwidth-4col.html">View all</a>
-            </div>
-          </div>
+              </ul> */}
 
-          <div>
-            <h3>Fetched Products</h3>
-            <pre>{JSON.stringify(data, null, 2)}</pre> {/* Tampilkan data di UI */}
+              <a className="btn -white" href="shop-fullwidth-4col.html">View all</a>
+            </div>
           </div>
 
           {/* Product Tab Content */}
@@ -100,9 +97,9 @@ export default function ProductTab () {
                         <div className="product ">
 
                             {/* Tag atau Product Tipe */}
-                            <div className="product-type">
+                            {/* <div className="product-type">
                                 <h5 className="-new">New</h5>
-                            </div>
+                            </div> */}
 
                             {/* If product discount */}
                             {/* <div className="product-type">
@@ -148,13 +145,20 @@ export default function ProductTab () {
 
                             <div className="product-content__footer">
                             {/* Price */}
-                            <h5 className="product-price--main">{product.price}</h5>
+                            <h5 className="product-price--main">
+                              {/* product price dalam rupiah */}
+                              Rp {product.price.toLocaleString()}
+                            </h5>
+                            {/* product price coret */}
+                            {/* <h5 className="product-price--discount">$35.00</h5> */}
+
                               {/* color type */}
                               {/* you can delete or comment this if product didnt have product color */}
                               {/* <div className="product-colors">
                                 <div className="product-colors__item bg-[#8B0000]"></div>
                                 <div className="product-colors__item bg-[#4169E1]"></div>
                               </div> */}
+
                             </div>
                           </div>
                         </div>
