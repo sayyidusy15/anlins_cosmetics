@@ -4,6 +4,7 @@ import NavbarTwo from "../navbarTwo";
 import Slider from "../slider";
 import ProductTab from "../productTab";
 import Footer from "../footer";
+import Ingredients from "../ingredients";
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
     return (
@@ -16,6 +17,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                 <div id="content">
                   <Slider/>
                   <ProductTab/>
+                  <Ingredients/>
                   <Footer/>
                 </div>
             </div>
