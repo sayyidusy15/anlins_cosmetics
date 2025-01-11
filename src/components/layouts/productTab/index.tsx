@@ -1,13 +1,26 @@
+"use client";
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faStarHalfStroke, faShoppingBag, faEye, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { useEffect, useState } from "react";
 
+
+type Product = {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  category: string;
+  imageUrl: string;
+  rating: number;
+};
 
 // Tipe untuk props StarRating
 interface StarRatingProps {
     rating: number; // Menentukan bahwa rating harus berupa angka
   }
-  
   function StarRating({ rating }: StarRatingProps) {
+
     return (
       <div className="rate">
         {[...Array(5)].map((_, index) => {
@@ -24,6 +37,35 @@ interface StarRatingProps {
   }
 
 export default function ProductTab () {
+
+  // menghubungkan data product dari API
+  const [data, setData] = useState<Product[]>([]);
+    // ambil data product dari API
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await fetch('/api/productTab');
+          console.log('API Response:', response);
+          if (!response.ok) {
+            console.error('Failed to fetch products:', response.statusText);
+            return;
+          }
+          const data: Product[] = await response.json();
+          console.log('Fetched Data:', data);
+          setData(data);
+        } catch (error) {
+          if (error instanceof Error) {
+            console.error('Error fetching products:', error.message);
+          } else {
+            console.error('Unexpected error:', error);
+          }
+        }
+      };
+    
+      fetchData();
+    }, []);
+    
+
     return (
         <div className="product-tab -style-2">
         <div className="container">
@@ -42,19 +84,25 @@ export default function ProductTab () {
             </div>
           </div>
 
+          <div>
+            <h3>Fetched Products</h3>
+            <pre>{JSON.stringify(data, null, 2)}</pre> {/* Tampilkan data di UI */}
+          </div>
+
           {/* Product Tab Content */}
           <div className="product-tab__content">
             <div className="product-tab__content__wrapper">
               <div className="row mx-n1 mx-md-n3">
-                
+
                 {/* Card Start */}
-                <div className="col-6 col-md-3 px-1 px-md-3">
+                {data.map((product, index) => (
+                <div key={index} className="col-6 col-md-3 px-1 px-md-3">
                         <div className="product ">
+
                             {/* Tag atau Product Tipe */}
                             <div className="product-type">
                                 <h5 className="-new">New</h5>
                             </div>
-
 
                             {/* If product discount */}
                             {/* <div className="product-type">
@@ -89,18 +137,18 @@ export default function ProductTab () {
                           <div className="product-content">
                             <div className="product-content__header">
                             {/* product category */}
-                              <div className="product-category">eyes</div>
+                              <div className="product-category">{product.category}</div>
                               {/* Rating */}
                                     <div className="rate ">
-                                        <StarRating rating={4.5} /> {/* Contoh rating */}
+                                        <StarRating rating={product.rating}  /> {/* Contoh rating */}
                                     </div>
                             </div>
                             {/* product title */}
-                            <a className="product-name" href="/shop/product-detail.html">The expert mascaraa</a>
+                            <a className="product-name" href="/shop/product-detail.html">{product.name}</a>
 
                             <div className="product-content__footer">
                             {/* Price */}
-                            <h5 className="product-price--main">$35.00</h5>
+                            <h5 className="product-price--main">{product.price}</h5>
                               {/* color type */}
                               {/* you can delete or comment this if product didnt have product color */}
                               {/* <div className="product-colors">
@@ -111,9 +159,8 @@ export default function ProductTab () {
                           </div>
                         </div>
                 </div>
-                {/* Card End */}
-
-                
+                ))}
+                {/* Card End */}  
               </div>
             </div>
           </div>
