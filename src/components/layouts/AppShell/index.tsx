@@ -3,6 +3,7 @@ import Script from "next/script";
 import NavbarTwo from "../navbarTwo";
 import Slider from "../slider";
 import ProductTab from "../productTab";
+import Footer from "../footer";
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
     return (
@@ -15,6 +16,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                 <div id="content">
                   <Slider/>
                   <ProductTab/>
+                  <Footer/>
                 </div>
             </div>
         </main>
