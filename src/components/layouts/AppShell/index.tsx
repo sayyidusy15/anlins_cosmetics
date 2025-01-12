@@ -33,7 +33,6 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         <Script type="module" src="/js/parallax.min.js"/> */}
         <Script type="module" src="/js/slick.min.js"/>
         <Script type="module" src="/js/main.min.js"/>
-        <Script type="module" src="/js/main.js"/>
 
       </div>
     );

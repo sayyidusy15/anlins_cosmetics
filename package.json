@@ -15,12 +15,16 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@neondatabase/serverless": "^0.10.4",
     "@prisma/client": "^6.2.1",
+    "@types/jquery": "^3.5.32",
+    "@types/slick-carousel": "^1.6.40",
     "dotenv": "^16.4.7",
+    "jquery": "^3.7.1",
     "next": "15.1.4",
     "pg": "^8.13.1",
     "prisma": "^6.2.1",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

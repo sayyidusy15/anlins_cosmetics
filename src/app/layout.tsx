@@ -8,6 +8,9 @@ import "@/styles/jquery.modal.min.css"
 import "@/styles/slick.min.css"
 // import "@/styles/star-rating.min.css"
 
+// slick-carousel
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 // Icon
 import '@fortawesome/fontawesome-svg-core/styles.css';
