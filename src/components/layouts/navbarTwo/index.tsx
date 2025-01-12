@@ -56,7 +56,6 @@ export default function NavbarTwo(){
                     width={150}
                     height={50}
                     />
-                  
                 </a>
                 <ul className="navigator_part -right">
                   <li>

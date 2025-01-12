@@ -1193,18 +1193,18 @@ template {
   position: relative; }
   .product-category {
     color: #888;
-    font-size: 0.8125em;
+    font-size:1em;
     font-weight: normal;
     line-height: 1;
     text-transform: capitalize; }
   .product-price--main {
     color: #111;
-    font-size: 0.8125em;
+    font-size:1em;
     font-weight: 600;
     line-height: 1; }
   .product-price--discount {
     color: #888;
-    font-size: 0.8125em;
+    font-size:1em;
     font-weight: normal;
     line-height: 1;
     text-decoration: line-through; }
@@ -3027,8 +3027,9 @@ ul {
       text-align: center; }
       .introduction-six__wrapper__item__content a {
         color: #111;
+        font-family: "Poppins", sans-serif;
         font-size: 1.25em;
-        font-weight: 700;
+        font-weight: 500;
         text-decoration: none;
         line-height: 1.6em;
         transition: 0.2s ease-in-out;
@@ -3622,7 +3623,7 @@ ul {
       left: 0;
       right: auto; }
   .menu.-style-3 {
-    background-color: #111;
+    background-color: #fff;
     padding: 0.9375em 0; }
     .menu.-style-3 .menu-logo img {
       height: 1.875em;
