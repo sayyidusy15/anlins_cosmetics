@@ -89,16 +89,16 @@ const Navbar = () => {
                 </ul>
               </div>
               <div className="menu-functions -white">
-                <a className="menu-icon -search" href="#">
+                {/* <a className="menu-icon -search" href="#">
                   <img src="/images/header/search-icon-white.png" alt="Search icon"/>
-                </a>
+                </a> */}
         
-                <div className="search-box">
+                {/* <div className="search-box">
                   <form>
                     <input type="text" placeholder="What are you looking for?" name="search"/>
                     <button><img src="/images/header/search-icon.png" alt="Search icon"/></button>
                   </form>
-                </div>
+                </div> */}
                 <a className="menu-icon -wishlist" href="/wishlist.html">
                   <img src="/images/header/wishlist-icon-white.png" alt="Wishlist icon"/>
                 </a>

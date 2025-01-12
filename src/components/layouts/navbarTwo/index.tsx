@@ -37,9 +37,7 @@ export default function NavbarTwo(){
               {/* Navigation */}
               <div className="navigator">
                 <ul className="navigator_part -left">
-                  <li>
-                    <a href="fullwidth-4col.html">Palettes</a>
-                  </li>
+
                   <li>
                     <a href="fullwidth-4col.html">Eyes</a>
                   </li>
