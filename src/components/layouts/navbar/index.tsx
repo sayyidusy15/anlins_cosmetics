@@ -1,9 +1,11 @@
+'use client';
 import Link from "next/link";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => {
+  
   return (
     <div className="menu -style-3 ">
       <div className="container">
@@ -110,11 +112,14 @@ const Navbar = () => {
                       <a href="wishlist.html">Wish list</a>
                     </li>
                   </ul>
+
                   <ul className="dropdown-menu__col -banner">
                     <a href="shop-fullwidth-4col.html">
-                      <img
+                      <Image
                         src="/images/header/dropdown-menu-banner.png"
                         alt="New product banner"
+                        width={300}
+                        height={300}
                       />
                     </a>
                   </ul>
