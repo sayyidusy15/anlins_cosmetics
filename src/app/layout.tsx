@@ -20,20 +20,27 @@ config.autoAddCss = false;
 
 import Navbar from "@/components/layouts/navbar";
 import Footer from "@/components/layouts/footer";
+import React from "react";
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  
+
   return (
     <html lang="en">
+      <head>
+        <title>Anlins - Cosmetic Beauty</title>
+        <meta name="description" content="Deskripsi website kamu" />
+      </head>
       <body>
-       
         <Navbar />
-        <main>{children}</main> {/* Konten halaman akan dirender di sini */}
+        <main>{children}</main>
         <Footer />
       </body>
     </html>
   );
 }
+
