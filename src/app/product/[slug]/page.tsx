@@ -10,6 +10,7 @@ import "@/styles/slick.min.css";
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { useParams } from 'next/navigation';
 // import { useRouter } from "next/navigation";
 
 type Product = {
@@ -20,34 +21,51 @@ type Product = {
   category: string;
   imageUrl: string;
   rating: number;
+  slug: string;
 };
 
-export default function ProductId({ params }: { params: { id: string } }) {
-  const { id } = params; // Ini adalah parameter 'id' dari URL
+export default function ProductDetail() {
+  // const { id } = params; // Ini adalah parameter 'id' dari URL
+  const params = useParams(); // Ambil params dari URL
+  const slug = params?.slug; // Ambil slug dari URL
+
+   // Cek slug di console
+   useEffect(() => {
+    console.log("Slug received:", slug);
+  }, [slug]);
+
+
   const [product, setProduct] = useState<Product | null>(null);
 
   useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const response = await fetch(`/api/products/${id}`); // Menggunakan ID dari URL untuk fetch produk
-        if (!response.ok) {
-          throw new Error("Failed to fetch product");
+    if (slug) {
+      // Fetch data produk berdasarkan slug
+      const fetchProduct = async () => {
+        try {
+          const response = await fetch(`/api/productTab/${slug}`);
+          const data: Product = await response.json();
+          setProduct(data);
+        } catch (error) {
+          console.error('Failed to fetch product:', error);
         }
-        const data: Product = await response.json();
-        setProduct(data);
-      } catch (error) {
-        console.error("Error fetching product:", error);
-      }
-    };
+      };
 
-    fetchProduct();
-  }, [id]);
+      fetchProduct();
+    }
+  }, [slug]);
 
-  if (!product) {
-    return <div>Loading...</div>;
-  }
+  if (!product) return <p>Loading...</p>;
 
   return (
+    // <div>
+    // <h1>{product.name}</h1>
+    // <p>{product.description}</p>
+    // <Image src={product.imageUrl} alt={product.name} />
+    // {/* Cek apakah price sudah ada sebelum diproses */}
+    // <p>Price: Rp {product.price ? product.price.toLocaleString() : 'N/A'}</p>
+    // <p>Category: {product.category}</p>
+    // <p>Rating: {product.rating}</p>
+    // </div>
     <div id="content">
       <div className="breadcrumb">
         <div className="container">
@@ -79,7 +97,9 @@ export default function ProductId({ params }: { params: { id: string } }) {
                       <h5>{product.category}</h5>
                       <h2>{product.name}</h2>
                     </div>
-                    <h3>Rp {product.price.toLocaleString()}</h3>
+               
+                    <h3>Rp {product.price?.toLocaleString() || 'N/A'}</h3>
+
                     <div className="divider"></div>
                     <div className="product-detail__content__footer">
                       <ul>

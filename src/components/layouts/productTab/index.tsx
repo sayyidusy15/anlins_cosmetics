@@ -21,6 +21,7 @@ type Product = {
   category: string;
   imageUrl: string;
   rating: number;
+  slug: string;
 };
 
 
@@ -147,7 +148,7 @@ export default function ProductTab() {
                     <div className="product-thumb">
                       <Link 
                         className="product-thumb__image"
-                        href={`/productId/${product.id}`}>
+                        href={`/product/${product.slug}`}>
                         <Image
                           src="/images/product/1.png"
                           alt="Product image"
@@ -204,7 +205,7 @@ export default function ProductTab() {
                       {/* product title */}
                       <Link
                         className="product-name"
-                        href={`/productId/${product.id}`}
+                        href={`/product/${product.slug}`}
                       >
                         {product.name}
                       </Link>
