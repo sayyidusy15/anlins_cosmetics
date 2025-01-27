@@ -59,6 +59,11 @@ function StarRating({ rating }: StarRatingProps) {
 export default function ProductTab() {
   // menghubungkan data product dari API
   const [data, setData] = useState<Product[]>([]);
+  // fitur loading 
+  const [isLoading, setIsLoading] = useState(true);
+  //penanganan error
+  const [error, setError] = useState<Error | null>(null);
+
   // ambil data product dari API
   useEffect(() => {
     const fetchData = async () => {
@@ -72,17 +77,33 @@ export default function ProductTab() {
         const data: Product[] = await response.json();
         console.log("Fetched Data:", data);
         setData(data);
+        setError(null); //clear error on success
       } catch (error) {
         if (error instanceof Error) {
           console.error("Error fetching products:", error.message);
+          setError(error);
         } else {
           console.error("Unexpected error:", error);
+          setError(new Error("An unexpected error occurred"));
         }
+      }finally {
+        setIsLoading(false);
       }
     };
 
     fetchData();
   }, []);
+
+  // loading
+  if (isLoading) {
+    return <div>Loading...</div>; // Tampilkan loading jika data masih diambil dari API
+    // bisa diganti dengan skeleton atau spinner
+  }
+
+  // error handling
+  if (error) {
+    return <div>Error: {error.message}</div>; // Tampilkan pesan error jika gagal mengambil data dari API
+  }
 
   return (
     <div className="product-tab -style-2">
