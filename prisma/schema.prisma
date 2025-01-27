@@ -22,6 +22,7 @@ model ProductTab {
   category    String
   imageUrl    String
   rating      Float
+  slug        String? @unique // Menambah kolom slug (nullable dan unik)
 }
 
 model Ingredient {
@@ -31,13 +32,3 @@ model Ingredient {
   imageUrl    String
 }
 
-model Product {
-  id          Int        @id @default(autoincrement())
-  name        String
-  description String
-  price       Float
-  category    String
-  imageUrl    String
-  rating      Float
-
-}

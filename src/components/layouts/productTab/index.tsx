@@ -23,6 +23,7 @@ type Product = {
   rating: number;
 };
 
+
 // Tipe untuk props StarRating
 interface StarRatingProps {
   rating: number; // Menentukan bahwa rating harus berupa angka
@@ -125,8 +126,7 @@ export default function ProductTab() {
                     <div className="product-thumb">
                       <Link 
                         className="product-thumb__image"
-                        // href={`/product/${product.id}`}>
-                        href = "/productId">
+                        href={`/productId/${product.id}`}>
                         <Image
                           src="/images/product/1.png"
                           alt="Product image"
@@ -183,7 +183,7 @@ export default function ProductTab() {
                       {/* product title */}
                       <Link
                         className="product-name"
-                        href="/productId"
+                        href={`/productId/${product.id}`}
                       >
                         {product.name}
                       </Link>

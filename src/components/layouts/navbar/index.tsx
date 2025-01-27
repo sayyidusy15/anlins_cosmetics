@@ -162,15 +162,15 @@ const Navbar = () => {
                 </button>
               </form>
             </div>
-            <a className="menu-icon -wishlist" href="/wishlist.html">
+            {/* <a className="menu-icon -wishlist" href="/wishlist.html">
               <Image
                 src="/images/header/wishlist-icon.png"
                 alt="Wishlist Icon"
                 width={20}
                 height={20}
               />
-            </a>
-            <div className="menu-cart">
+            </a> */}
+            {/* <div className="menu-cart">
               <a className="menu-icon -cart" href="#">
                 <Image
                   src="/images/header/cart-icon.png"
@@ -183,7 +183,7 @@ const Navbar = () => {
               <h5>
                 Cart:<span>$100</span>
               </h5>
-            </div>
+            </div> */}
             <a className="menu-icon -navbar" href="#">
               <div className="bar"></div>
               <div className="bar"></div>

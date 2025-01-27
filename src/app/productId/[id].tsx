@@ -1,3 +1,5 @@
+"use client";
+
 // CSS FAMILY
 import "@/styles/style.css";
 import "@/styles/bootstrap-drawer.min.css";
@@ -7,8 +9,44 @@ import "@/styles/jquery.modal.min.css";
 import "@/styles/slick.min.css";
 
 import Image from "next/image";
+import { useEffect, useState } from "react";
+// import { useRouter } from "next/navigation";
 
-export default function ProductId() {
+type Product = {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  category: string;
+  imageUrl: string;
+  rating: number;
+};
+
+export default function ProductId({ params }: { params: { id: string } }) {
+  const { id } = params; // Ini adalah parameter 'id' dari URL
+  const [product, setProduct] = useState<Product | null>(null);
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await fetch(`/api/products/${id}`); // Menggunakan ID dari URL untuk fetch produk
+        if (!response.ok) {
+          throw new Error("Failed to fetch product");
+        }
+        const data: Product = await response.json();
+        setProduct(data);
+      } catch (error) {
+        console.error("Error fetching product:", error);
+      }
+    };
+
+    fetchProduct();
+  }, [id]);
+
+  if (!product) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div id="content">
       <div className="breadcrumb">
@@ -38,10 +76,10 @@ export default function ProductId() {
                 <div className="product-detail__content">
                   <div className="product-detail__content">
                     <div className="product-detail__content__header">
-                      <h5>eyes</h5>
-                      <h2>The expert mascaraa</h2>
+                      <h5>{product.category}</h5>
+                      <h2>{product.name}</h2>
                     </div>
-                    <h3>$35.00</h3>
+                    <h3>Rp {product.price.toLocaleString()}</h3>
                     <div className="divider"></div>
                     <div className="product-detail__content__footer">
                       <ul>
@@ -84,11 +122,7 @@ export default function ProductId() {
                             data-tab-index="0"
                           >
                             <p>
-                              Lorem ipsum dolor sit amet, consectetur adipiscing
-                              elit, sed do eiusmod tempor incididunt ut labore
-                              et dolore magna aliqua. Quis ipsum suspendisse
-                              ultrices gravida. Risus commodo viverra maecenas
-                              accumsan lacus vel facilisis.
+                              {product.description}
                             </p>
                           </div>
                         </div>
