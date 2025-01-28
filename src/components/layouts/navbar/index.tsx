@@ -130,6 +130,7 @@ const Navbar = () => {
                       </li>
                     </ul>
 
+                    {/* banner */}
                     <ul className="dropdown-menu__col -banner">
                       <a href="">
                         <Image
@@ -220,7 +221,7 @@ const Navbar = () => {
                   <div className="relative">
                     <input
                       type="text"
-                      placeholder="Search..."
+                      placeholder="Cari produk kosmetik apa?"
                       className="w-full p-3 border rounded-lg"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
@@ -243,66 +244,84 @@ const Navbar = () => {
               <nav>
                 <ul className="space-y-4">
                   <li>
-                    <details>
-                      <summary className="flex justify-between items-center">
+                    <details className="group">
+                      <summary className="flex justify-between items-center cursor-pointer text-xl font-bold text-slate-950">
                         Home
                         <FontAwesomeIcon icon={faAngleDown} />
                       </summary>
-                      <ul className="pl-4 mt-2 space-y-2">
+                      <ul className="pl-4 mt-2 space-y-2 overflow-hidden transition-all duration-300 max-h-0 group-open:max-h-96">
                         <li>
-                          <a href="">Beauty Salon</a>
+                          <a className="text-lg font-semibold text-slate-600" href="">Beauty Salon</a>
                         </li>
                         <li>
-                          <a href="">Makeup Salon</a>
+                          <a className="text-lg font-semibold text-slate-600" href="">Makeup Salon</a>
                         </li>
                         <li>
-                          <a href="">Natural Shop</a>
+                          <a className="text-lg font-semibold text-slate-600" href="">Natural Shop</a>
                         </li>
                         <li>
-                          <a href="">Spa Shop</a>
+                          <a className="text-lg font-semibold text-slate-600" href="">Spa Shop</a>
                         </li>
                         <li>
-                          <a href="">Mask Shop</a>
+                          <a className="text-lg font-semibold text-slate-600" href="">Mask Shop</a>
                         </li>
                         <li>
-                          <a href="">Skincare Shop</a>
+                          <a className="text-lg font-semibold text-slate-600" href="">Skincare Shop</a>
                         </li>
                       </ul>
                     </details>
                   </li>
                   <li>
-                    <a href="">Services</a>
+                    <a className="text-xl font-bold text-slate-950" href="">
+                      Services
+                    </a>
                   </li>
                   <li>
-                    <a href="">About</a>
+                    <a className="text-xl font-bold text-slate-950" href="">
+                      About
+                    </a>
                   </li>
                   <li>
-                    <details>
-                      <summary className="flex justify-between items-center">
+                    <details className="group">
+                      <summary className="flex justify-between items-center cursor-pointer text-xl font-bold text-slate-950">
                         Shop
                         <FontAwesomeIcon icon={faAngleDown} />
                       </summary>
-                      <ul className="pl-4 mt-2 space-y-2">
+                      <ul className="pl-4 mt-2 space-y-2 overflow-hidden transition-all duration-300 max-h-0 group-open:max-h-96">
                         <li>
-                          <a href="">Shop Fullwidth 4 Columns</a>
+                          <a className="text-lg font-semibold text-slate-600" href="">Shop Fullwidth 4 Columns</a>
                         </li>
                         <li>
-                          <a href="">Shop Grid 3 Columns</a>
+                          <a className="text-lg font-semibold text-slate-600" href="">Shop Grid 3 Columns</a>
                         </li>
                         <li>
-                          <a href="">Product Detail</a>
+                          <a className="text-lg font-semibold text-slate-600" href="">Product Detail</a>
                         </li>
                         <li>
-                          <a href="">Shopping Cart</a>
+                          <a className="text-lg font-semibold text-slate-600" href="">Shopping Cart</a>
                         </li>
+                        <ul className="dropdown-menu__col -banner">
+                          <a href="">
+                            <Image
+                              src="/images/header/dropdown-menu-banner.png"
+                              alt="New product banner"
+                              width={300}
+                              height={300}
+                            />
+                          </a>
+                        </ul>
                       </ul>
                     </details>
                   </li>
                   <li>
-                    <a href="">Blog</a>
+                    <a className="text-xl font-bold text-slate-950" href="">
+                      Blog
+                    </a>
                   </li>
                   <li>
-                    <a href="">Contact</a>
+                    <a className="text-xl font-bold text-slate-950" href="">
+                      Contact
+                    </a>
                   </li>
                 </ul>
               </nav>
@@ -317,7 +336,7 @@ const Navbar = () => {
                       width={20}
                       height={20}
                     />
-                    <span>Wishlist</span>
+                    <span className="text-lg font-semibold text-slate-900">Wishlist</span>
                   </a>
                   <a href="" className="flex items-center space-x-2">
                     <Image
@@ -326,7 +345,7 @@ const Navbar = () => {
                       width={20}
                       height={20}
                     />
-                    <span>Cart (0)</span>
+                    <span className="text-lg font-semibold text-slate-900">Cart (0)</span>
                   </a>
                 </div>
               </div>
@@ -348,7 +367,7 @@ const Navbar = () => {
                 <div className="relative">
                   <input
                     type="text"
-                    placeholder="Anda mencari produk kosmetik apa?"
+                    placeholder="Cari produk kosmetik apa?"
                     className="w-full p-4 border rounded-lg pr-12"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}

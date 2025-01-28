@@ -14,7 +14,7 @@ const ProductDetailSkeleton = () => {
             <div className="row">
               {/* Left column - Product Image */}
               <div className="col-12 col-md-6">
-                <div className="w-full aspect-square bg-gray-200 rounded animate-pulse" />
+                <div className="w-full aspect-square bg-gray-200 rounded" />
               </div>
 
               {/* Right column - Product Details */}
