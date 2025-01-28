@@ -11,6 +11,7 @@ import {
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import ProductSkeleton from "../ProductTabSkeleton";
 
 
 type Product = {
@@ -97,7 +98,8 @@ export default function ProductTab() {
 
   // loading
   if (isLoading) {
-    return <div>Loading...</div>; // Tampilkan loading jika data masih diambil dari API
+    return <ProductSkeleton />; 
+    // Tampilkan loading jika data masih diambil dari API
     // bisa diganti dengan skeleton atau spinner
   }
 

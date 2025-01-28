@@ -10,7 +10,7 @@ const Navbar = () => {
     <div className="menu -style-3 ">
       <div className="container">
         <div className="menu__wrapper">
-          <Link href="/index.html">
+          <Link href="/">
             <Image src="/images/logo.png" alt="Logo" width={150} height={50} />
           </Link>
           <div className="navigator -black mt-2">

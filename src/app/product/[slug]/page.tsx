@@ -11,6 +11,7 @@ import "@/styles/slick.min.css";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useParams } from 'next/navigation';
+import ProductDetailSkeleton from "@/components/layouts/ProductDetailSkeleton";
 // import { useRouter } from "next/navigation";
 
 type Product = {
@@ -54,7 +55,7 @@ export default function ProductDetail() {
     }
   }, [slug]);
 
-  if (!product) return <p>Loading...</p>;
+  if (!product) return <ProductDetailSkeleton />;
 
   return (
     // <div>
