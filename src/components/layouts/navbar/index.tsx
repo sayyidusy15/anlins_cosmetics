@@ -4,7 +4,10 @@ import React, { useState, FormEvent } from "react"; // Tambahkan FormEvent
 import Link from "next/link";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDown, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { 
+  // faAngleDown, 
+  faTimes 
+} from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -42,7 +45,7 @@ const Navbar = () => {
               <ul>
                 <li className="relative">
                   {/* === Home === */}
-                  <a href="">
+                  {/* <a href="">
                     Home
                     <span className="dropable-icon">
                       <FontAwesomeIcon icon={faAngleDown} />
@@ -67,24 +70,24 @@ const Navbar = () => {
                     <li>
                       <a href="">Skincare Shop</a>
                     </li>
-                  </ul>
+                  </ul> */}
                 </li>
                 {/* === Services === */}
                 <li>
-                  <a href="">Services</a>
+                  {/* <a href="">Services</a> */}
                 </li>
                 {/* === About === */}
                 <li>
-                  <a href="">About</a>
+                  {/* <a href="">About</a> */}
                 </li>
                 {/* === Shop === */}
                 <li>
-                  <a href="">
+                  {/* <a href="">
                     Shop
                     <span className="dropable-icon">
                       <FontAwesomeIcon icon={faAngleDown} />
                     </span>
-                  </a>
+                  </a> */}
 
                   <ul className="dropdown-menu -wide">
                     <ul className="dropdown-menu__col">
@@ -145,12 +148,12 @@ const Navbar = () => {
                 </li>
 
                 {/* BLOG */}
-                <li>
+                {/* <li>
                   <a href="">Blog</a>
                 </li>
                 <li>
                   <a href="">Contact</a>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>
@@ -169,16 +172,16 @@ const Navbar = () => {
               />
             </button>
 
-            <a href="" className="menu-icon">
+            {/* <a href="" className="menu-icon">
               <Image
                 src="/images/header/wishlist-icon.png"
                 alt="Wishlist Icon"
                 width={20}
                 height={20}
               />
-            </a>
+            </a> */}
 
-            <div className="menu-cart relative">
+            {/* <div className="menu-cart relative">
               <a href="" className="flex items-center">
                 <Image
                   src="/images/header/cart-icon.png"
@@ -190,7 +193,7 @@ const Navbar = () => {
                   0
                 </span>
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
 
@@ -241,7 +244,7 @@ const Navbar = () => {
                 </form>
               </div>
 
-              <nav>
+              {/* <nav>
                 <ul className="space-y-4">
                   <li>
                     <details className="group">
@@ -324,10 +327,10 @@ const Navbar = () => {
                     </a>
                   </li>
                 </ul>
-              </nav>
+              </nav> */}
 
               {/* Mobile Menu Footer with Cart and Wishlist */}
-              <div className="mt-8 pt-4 border-t">
+              {/* <div className="mt-8 pt-4 border-t">
                 <div className="space-y-4">
                   <a href="" className="flex items-center space-x-2">
                     <Image
@@ -348,7 +351,7 @@ const Navbar = () => {
                     <span className="text-lg font-semibold text-slate-900">Cart (0)</span>
                   </a>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         )}
