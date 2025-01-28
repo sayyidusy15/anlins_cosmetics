@@ -21,6 +21,7 @@ config.autoAddCss = false;
 import Navbar from "@/components/layouts/navbar";
 import Footer from "@/components/layouts/footer";
 import React from "react";
+// import NavbarNew from "@/components/layouts/navbarNew";
 
 export default function RootLayout({
   children,
@@ -37,6 +38,7 @@ export default function RootLayout({
       </head>
       <body>
         <Navbar />
+        {/* <NavbarNew /> */}
         <main>{children}</main>
         <Footer />
       </body>
