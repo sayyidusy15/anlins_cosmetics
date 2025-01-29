@@ -11,7 +11,7 @@ import {
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import ProductSkeleton from "../ProductTabSkeleton";
+import ProductSkeleton from "../../elements/skeleton/ProductTabSkeleton";
 
 type Product = {
   id: number;

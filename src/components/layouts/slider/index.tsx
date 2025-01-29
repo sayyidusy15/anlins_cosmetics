@@ -1,16 +1,63 @@
-// File: components/layouts/slider/index.tsx
-
 "use client";
-
+import { useEffect, useState} from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade"; // Import untuk efek fade
+import Image from "next/image";
+
+type HomePageSlider = {
+  id: number;
+  subtitle: string;
+  title: string;
+  description: string;
+  imageUrl: string;
+  direction: string;
+};
 
 import { Pagination, EffectFade, Autoplay } from "swiper/modules";
+import HomePageSekeleton from "@/components/elements/skeleton/homePageSliderSekeleton";
 
 export default function Slider() {
+  const [data, setData] = useState<HomePageSlider[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/api/HomePageSlider");
+        if (!response.ok) {
+          console.error("Failed to fetch HomePageSlider:", response.statusText);
+          return;
+        }
+        const data: HomePageSlider[] = await response.json();
+        setData(data);
+        setError(null);
+      } catch (error) {
+        if (error instanceof Error) {
+          setError(error);
+        } else {
+          setError(new Error("An unexpected error occurred"));
+        }
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (isLoading) {
+    return <HomePageSekeleton />;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
   return (
     <div className="slider -style-2 slider-arrow-middle">
       <Swiper
@@ -33,85 +80,34 @@ export default function Slider() {
         className="slider__carousel"
       >
         {/* === SLIDER === */}
-        {/* Card 1 */}
-        <SwiperSlide>
-          <div className="slider__carousel__item slider-1">
-            <div className="container">
-              <div className="slider-background">
-                <img
-                  className="slider-background"
-                  src="/images/slider/SliderTwo/1.png"
-                  alt="Slider background"
-                />
-              </div>
-              <div className="slider-content">
-                <h1 className="slider-content__title">
-                  <span>Better</span>
-                  <br /> than before
-                </h1>
-                <p className="slider-content__description">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt.
-                </p>
-                <a className="btn -white" href="#">
-                  Shop now
-                </a>
-              </div>
+        {data.map((HomePageSlider, index)=>(
+        <SwiperSlide key={index}>
+        <div className="slider__carousel__item slider-2">
+          <div className="container">
+            <div className="slider-background">
+              <Image
+                className="slider-background"
+                src="/images/slider/SliderTwo/2.png"
+                alt="Slider background"
+                width={1920}
+                height={1080}
+              />
+            </div>
+            <div className="slider-content">
+              <h5 className="slider-content__subtitle">{HomePageSlider.subtitle}</h5>
+              <h1 className="slider-content__title">{HomePageSlider.title}</h1>
+              <p className="slider-content__description">
+                {HomePageSlider.description}
+              </p>
+              <a className="btn -dark" href="#">
+                {HomePageSlider.direction}
+              </a>
             </div>
           </div>
-        </SwiperSlide>
+        </div>
+      </SwiperSlide>
+        ))}
 
-        {/* Card 2 */}
-        <SwiperSlide>
-          <div className="slider__carousel__item slider-2">
-            <div className="container">
-              <div className="slider-background">
-                <img
-                  className="slider-background"
-                  src="/images/slider/SliderTwo/2.png"
-                  alt="Slider background"
-                />
-              </div>
-              <div className="slider-content">
-                <h5 className="slider-content__subtitle">Outstanding Beauty</h5>
-                <h1 className="slider-content__title">For your nail</h1>
-                <p className="slider-content__description">
-                  Quis ipsum suspendisse ultrices gravida. Risus commodo viverra
-                  maecenas accumsan lacus vel facilisis.
-                </p>
-                <a className="btn -dark" href="#">
-                  Shop now
-                </a>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-
-        {/* Card 3 */}
-        <SwiperSlide>
-          <div className="slider__carousel__item slider-3">
-            <div className="container">
-              <div className="slider-background">
-                <img
-                  className="slider-background"
-                  src="/images/slider/SliderTwo/3.png"
-                  alt="Slider background"
-                />
-              </div>
-              <div className="slider-content">
-                <h5 className="slider-content__subtitle">Outstanding Beauty</h5>
-                <h1 className="slider-content__title">For your nail</h1>
-                <p className="slider-content__description">
-                  Quis ipsum suspendisse ultrices gravida. Risus commodo viverra
-                  maecenas accumsan lacus vel facilisis.
-                </p>
-                <a className="btn -dark" href="#">
-                  Shop now
-                </a>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
       </Swiper>
 
       {/* Custom pagination styling */}

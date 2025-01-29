@@ -11,7 +11,7 @@ import "@/styles/slick.min.css";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import ProductDetailSkeleton from "@/components/layouts/ProductDetailSkeleton";
+import ProductDetailSkeleton from "@/components/elements/skeleton/ProductDetailSkeleton";
 import ProductActions from "@/components/elements/ProductDetailActions";
 import ProductDetailSlider from "@/components/elements/ProductDetailSlider";
 

@@ -32,3 +32,12 @@ model Ingredient {
   imageUrl    String
 }
 
+model HomePageSlider{
+  id          Int     @id @default(autoincrement())
+  subtitle    String
+  title       String
+  description String
+  imageUrl    String
+  direction   String
+}
+

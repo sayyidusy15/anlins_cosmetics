@@ -13,7 +13,7 @@ import {
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import ProductSkeleton from "@/components/layouts/ProductTabSkeleton";
+import ProductSkeleton from "@/components/elements/skeleton/ProductTabSkeleton";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
