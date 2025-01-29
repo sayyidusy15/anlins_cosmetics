@@ -1,6 +1,7 @@
 "use client";
 
 import {useState, useEffect} from 'react';
+import Image from 'next/image';
 
 type Ingredient = {
     id: number;
@@ -40,7 +41,7 @@ export default function Ingredients(){
         <div className="introduction-six">
         <div className="container">
                 <div className="section-title -center mb-[1.875em]">
-                  <h2>What Ingredients?</h2>
+                  <h2>Kenali bahan produk kami</h2>
                 </div>
           <div className="introduction-six__wrapper">
             <div className="row">
@@ -50,7 +51,12 @@ export default function Ingredients(){
               <div key={index} className="col-12 col-md-6 col-lg-4">
                 <div className="introduction-six__wrapper__item">
                   <div className="introduction-six__wrapper__item__image">
-                    <img src="/images/introduction/Introduction Six/1.png" alt="Rosehip Seed Oil"/>
+                    <Image
+                     src="/images/introduction/Introduction Six/1.png"
+                     alt="Rosehip Seed Oil"
+                      width={100}
+                      height={100}
+                    />
                   </div>
                   <div className="introduction-six__wrapper__item__content">
                     <a href="#">{ingredient.name}</a>

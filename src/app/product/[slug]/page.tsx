@@ -12,6 +12,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useParams } from 'next/navigation';
 import ProductDetailSkeleton from "@/components/layouts/ProductDetailSkeleton";
+import ProductActions from "@/components/elements/ProductDetailActions";
 // import { useRouter } from "next/navigation";
 
 type Product = {
@@ -58,15 +59,6 @@ export default function ProductDetail() {
   if (!product) return <ProductDetailSkeleton />;
 
   return (
-    // <div>
-    // <h1>{product.name}</h1>
-    // <p>{product.description}</p>
-    // <Image src={product.imageUrl} alt={product.name} />
-    // {/* Cek apakah price sudah ada sebelum diproses */}
-    // <p>Price: Rp {product.price ? product.price.toLocaleString() : 'N/A'}</p>
-    // <p>Category: {product.category}</p>
-    // <p>Rating: {product.rating}</p>
-    // </div>
     <div id="content">
       <div className="breadcrumb">
         <div className="container">
@@ -99,7 +91,7 @@ export default function ProductDetail() {
                       <h2>{product.name}</h2>
                     </div>
                
-                    <h3>Rp {product.price?.toLocaleString() || 'N/A'}</h3>
+                    <h3 className="text-xl font-semibold">Rp {product.price?.toLocaleString() || 'N/A'}</h3>
 
                     <div className="divider"></div>
                     <div className="product-detail__content__footer">
@@ -109,7 +101,9 @@ export default function ProductDetail() {
                         <li>Reward point: 30</li>
                         <li>Availability: In Stock</li>
                       </ul>
-                      <div className="product-detail__controller">
+                      {/* action */}
+                      <ProductActions product={product} />
+                      {/* <div className="product-detail__controller">
                         <div className="quantity-controller -border -round">
                           <div className="quantity-controller__btn -descrease">
                             -
@@ -120,16 +114,14 @@ export default function ProductDetail() {
                           </div>
                         </div>
                         <div className="add-to-cart -dark">
-                          <a className="btn -round -red" href="#">
-                            <i className="fas fa-shopping-bag"></i>
+                          <a className="btn -round bg-green-600 text-white" href="#">
+                            <FontAwesomeIcon className="text-xl  mt-[6px]" icon={faWhatsapp} />
                           </a>
                           <h5>Beli Sekarang</h5>
                         </div>
                         <div className="product-detail__controler__actions"></div>
-                        <a className="btn -round -white" href="#">
-                          <i className="fas fa-heart"></i>
-                        </a>
-                      </div>
+                      </div> */}
+
                       <div className="divider"></div>
                       <div className="product-detail__content__tab">
                         <ul className="tab-content__header">

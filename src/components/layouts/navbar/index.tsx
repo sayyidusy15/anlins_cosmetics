@@ -26,7 +26,12 @@ const Navbar = () => {
       <div className="container">
         <div className="menu__wrapper">
           <Link href="/">
-            <Image src="/images/logo.png" alt="Logo" width={150} height={50} />
+            <Image 
+            src="/images/logo-anlins.png" 
+            // src="/images/logo-text-anlins.png" 
+            alt="Logo" 
+            width={150} 
+            height={50} />
           </Link>
 
           {/* Mobile Menu Button */}
@@ -204,7 +209,7 @@ const Navbar = () => {
               <div className="flex justify-between items-center mb-6">
                 <Link href="/">
                   <Image
-                    src="/images/logo.png"
+                    src="/images/logo-anlins.png" 
                     alt="Logo"
                     width={150}
                     height={50}
