@@ -10,9 +10,11 @@ import "@/styles/slick.min.css";
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { useParams } from 'next/navigation';
+import { useParams } from "next/navigation";
 import ProductDetailSkeleton from "@/components/layouts/ProductDetailSkeleton";
 import ProductActions from "@/components/elements/ProductDetailActions";
+import ProductDetailSlider from "@/components/elements/ProductDetailSlider";
+
 // import { useRouter } from "next/navigation";
 
 type Product = {
@@ -31,11 +33,10 @@ export default function ProductDetail() {
   const params = useParams(); // Ambil params dari URL
   const slug = params?.slug; // Ambil slug dari URL
 
-   // Cek slug di console
-   useEffect(() => {
+  // Cek slug di console
+  useEffect(() => {
     console.log("Slug received:", slug);
   }, [slug]);
-
 
   const [product, setProduct] = useState<Product | null>(null);
 
@@ -48,7 +49,7 @@ export default function ProductDetail() {
           const data: Product = await response.json();
           setProduct(data);
         } catch (error) {
-          console.error('Failed to fetch product:', error);
+          console.error("Failed to fetch product:", error);
         }
       };
 
@@ -90,8 +91,10 @@ export default function ProductDetail() {
                       <h5>{product.category}</h5>
                       <h2>{product.name}</h2>
                     </div>
-               
-                    <h3 className="text-xl font-semibold">Rp {product.price?.toLocaleString() || 'N/A'}</h3>
+
+                    <h3 className="text-xl font-semibold">
+                      Rp {product.price?.toLocaleString() || "N/A"}
+                    </h3>
 
                     <div className="divider"></div>
                     <div className="product-detail__content__footer">
@@ -103,24 +106,6 @@ export default function ProductDetail() {
                       </ul>
                       {/* action */}
                       <ProductActions product={product} />
-                      {/* <div className="product-detail__controller">
-                        <div className="quantity-controller -border -round">
-                          <div className="quantity-controller__btn -descrease">
-                            -
-                          </div>
-                          <div className="quantity-controller__number">2</div>
-                          <div className="quantity-controller__btn -increase">
-                            +
-                          </div>
-                        </div>
-                        <div className="add-to-cart -dark">
-                          <a className="btn -round bg-green-600 text-white" href="#">
-                            <FontAwesomeIcon className="text-xl  mt-[6px]" icon={faWhatsapp} />
-                          </a>
-                          <h5>Beli Sekarang</h5>
-                        </div>
-                        <div className="product-detail__controler__actions"></div>
-                      </div> */}
 
                       <div className="divider"></div>
                       <div className="product-detail__content__tab">
@@ -134,9 +119,7 @@ export default function ProductDetail() {
                             className="tab-content__item -description"
                             data-tab-index="0"
                           >
-                            <p>
-                              {product.description}
-                            </p>
+                            <p>{product.description}</p>
                           </div>
                         </div>
                       </div>
@@ -148,6 +131,7 @@ export default function ProductDetail() {
           </div>
         </div>
       </div>
+      <ProductDetailSlider />
     </div>
   );
 }

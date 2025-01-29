@@ -13,7 +13,6 @@ import Image from "next/image";
 import Link from "next/link";
 import ProductSkeleton from "../ProductTabSkeleton";
 
-
 type Product = {
   id: number;
   name: string;
@@ -24,7 +23,6 @@ type Product = {
   rating: number;
   slug: string;
 };
-
 
 // Tipe untuk props StarRating
 interface StarRatingProps {
@@ -61,7 +59,7 @@ function StarRating({ rating }: StarRatingProps) {
 export default function ProductTab() {
   // menghubungkan data product dari API
   const [data, setData] = useState<Product[]>([]);
-  // fitur loading 
+  // fitur loading
   const [isLoading, setIsLoading] = useState(true);
   //penanganan error
   const [error, setError] = useState<Error | null>(null);
@@ -88,7 +86,7 @@ export default function ProductTab() {
           console.error("Unexpected error:", error);
           setError(new Error("An unexpected error occurred"));
         }
-      }finally {
+      } finally {
         setIsLoading(false);
       }
     };
@@ -98,7 +96,7 @@ export default function ProductTab() {
 
   // loading
   if (isLoading) {
-    return <ProductSkeleton />; 
+    return <ProductSkeleton />;
     // Tampilkan loading jika data masih diambil dari API
     // bisa diganti dengan skeleton atau spinner
   }
@@ -148,9 +146,10 @@ export default function ProductTab() {
                             </div> */}
 
                     <div className="product-thumb">
-                      <Link 
+                      <Link
                         className="product-thumb__image"
-                        href={`/product/${product.slug}`}>
+                        href={`/product/${product.slug}`}
+                      >
                         <Image
                           src="/images/product/1.png"
                           alt="Product image"
