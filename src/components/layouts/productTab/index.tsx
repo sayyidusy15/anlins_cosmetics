@@ -75,7 +75,7 @@ export default function ProductTab() {
           return;
         }
         const data: Product[] = await response.json();
-        console.log("Fetched Data:", data);
+        // console.log("Fetched Data:", data);
         setData(data);
         setError(null); //clear error on success
       } catch (error) {

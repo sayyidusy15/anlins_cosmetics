@@ -23,7 +23,7 @@ export default function Ingredients(){
           return;
         }
         const data: Ingredient[] = await response.json();
-        console.log('Fetched Data:', data);
+        // console.log('Fetched Data:', data);
         setData(data);
       } catch (error){
         if(error instanceof Error){
@@ -33,7 +33,7 @@ export default function Ingredients(){
         }
       }
     };
-
+    
     fetchData();
   }, []);
 

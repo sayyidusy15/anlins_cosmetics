@@ -151,7 +151,6 @@ const Navbar = () => {
                     </ul>
                   </ul>
                 </li>
-
                 {/* BLOG */}
                 {/* <li>
                   <a href="">Blog</a>
@@ -248,7 +247,6 @@ const Navbar = () => {
                   </div>
                 </form>
               </div>
-
               {/* <nav>
                 <ul className="space-y-4">
                   <li>
@@ -333,7 +331,6 @@ const Navbar = () => {
                   </li>
                 </ul>
               </nav> */}
-
               {/* Mobile Menu Footer with Cart and Wishlist */}
               {/* <div className="mt-8 pt-4 border-t">
                 <div className="space-y-4">

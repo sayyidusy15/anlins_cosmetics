@@ -57,7 +57,7 @@ export default function Slider() {
   if (error) {
     return <div>Error: {error.message}</div>;
   }
-
+  
   return (
     <div className="slider -style-2 slider-arrow-middle">
       <Swiper
