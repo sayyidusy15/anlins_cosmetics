@@ -1,37 +1,97 @@
 "use client";
 
-import React, { useState, FormEvent } from "react"; // Tambahkan FormEvent
+import React, { useState, FormEvent, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { 
-  // faAngleDown, 
-  faTimes 
-} from "@fortawesome/free-solid-svg-icons";
+import { faTimes, faStar } from "@fortawesome/free-solid-svg-icons";
+
+// Interface untuk tipe produk sesuai dengan data yang ada
+interface Product {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  category: string;
+  imageUrl: string;
+  rating: number;
+  slug: string;
+}
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [allProducts, setAllProducts] = useState<Product[]>([]);
 
-  // Tambahkan type FormEvent<HTMLFormElement>
+  // Fetch semua produk saat komponen dimount
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch("/api/productTab");
+        if (!response.ok) {
+          throw new Error("Failed to fetch products");
+        }
+        const data = await response.json();
+        setAllProducts(data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  // Function untuk mencari produk
+  const searchProducts = (query: string) => {
+    setIsLoading(true);
+    const filteredProducts = allProducts.filter(product =>
+      product.name.toLowerCase().includes(query.toLowerCase()) ||
+      product.category.toLowerCase().includes(query.toLowerCase())
+    );
+    setSearchResults(filteredProducts);
+    setIsLoading(false);
+  };
+
+  // Handle search input changes
+  useEffect(() => {
+    if (searchQuery.length > 2) {
+      searchProducts(searchQuery);
+    } else {
+      setSearchResults([]);
+    }
+  }, [searchQuery]);
+
   const handleSearch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Searching for:", searchQuery);
-    setIsSearchOpen(false);
+    if (searchQuery.trim()) {
+      searchProducts(searchQuery);
+    }
+  };
+
+  // Format harga ke Rupiah
+  const formatPrice = (price: number) => {
+    return new Intl.NumberFormat('id-ID', {
+      style: 'currency',
+      currency: 'IDR',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(price);
   };
 
   return (
-    <div className="menu -style-3 ">
+    <div className="menu -style-3 relative">
       <div className="container">
         <div className="menu__wrapper">
           <Link href="/">
             <Image 
-            src="/images/logo-anlins.png" 
-            // src="/images/logo-text-anlins.png" 
-            alt="Logo" 
-            width={150} 
-            height={50} />
+              src="/images/logo-anlins.png" 
+              alt="Logo" 
+              width={150} 
+              height={50} 
+            />
           </Link>
 
           {/* Mobile Menu Button */}
@@ -47,122 +107,11 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden lg:block">
             <div className="navigator -black mt-2">
-              <ul>
-                <li className="relative">
-                  {/* === Home === */}
-                  {/* <a href="">
-                    Home
-                    <span className="dropable-icon">
-                      <FontAwesomeIcon icon={faAngleDown} />
-                    </span>
-                  </a>
-                  <ul className="dropdown-menu">
-                    <li>
-                      <a href="">Beauty Salon</a>
-                    </li>
-                    <li>
-                      <a href="">Makeup Salon</a>
-                    </li>
-                    <li>
-                      <a href="">Natural Shop</a>
-                    </li>
-                    <li>
-                      <a href="">Spa Shop</a>
-                    </li>
-                    <li>
-                      <a href="">Mask Shop</a>
-                    </li>
-                    <li>
-                      <a href="">Skincare Shop</a>
-                    </li>
-                  </ul> */}
-                </li>
-                {/* === Services === */}
-                <li>
-                  {/* <a href="">Services</a> */}
-                </li>
-                {/* === About === */}
-                <li>
-                  {/* <a href="">About</a> */}
-                </li>
-                {/* === Shop === */}
-                <li>
-                  {/* <a href="">
-                    Shop
-                    <span className="dropable-icon">
-                      <FontAwesomeIcon icon={faAngleDown} />
-                    </span>
-                  </a> */}
-
-                  <ul className="dropdown-menu -wide">
-                    <ul className="dropdown-menu__col">
-                      <li>
-                        <a href="">Shop Fullwidth 4 Columns</a>
-                      </li>
-                      <li>
-                        <a href="">Shop Fullwidth 5 Columns</a>
-                      </li>
-                      <li>
-                        <a href="">Shop Fullwidth Left Sidebar</a>
-                      </li>
-                      <li>
-                        <a href="">Shop Fullwidth Right Sidebar</a>
-                      </li>
-                    </ul>
-                    <ul className="dropdown-menu__col">
-                      <li>
-                        <a href="">Shop grid 4 Columns</a>
-                      </li>
-                      <li>
-                        <a href="">Shop Grid 3 Columns</a>
-                      </li>
-                      <li>
-                        <a href="">Shop Grid Sideber</a>
-                      </li>
-                      <li>
-                        <a href="">Shop List Sidebar</a>
-                      </li>
-                    </ul>
-                    <ul className="dropdown-menu__col">
-                      <li>
-                        <a href="">Product Detail</a>
-                      </li>
-                      <li>
-                        <a href="">Shopping cart</a>
-                      </li>
-                      <li>
-                        <a href="">Checkout</a>
-                      </li>
-                      <li>
-                        <a href="">Wish list</a>
-                      </li>
-                    </ul>
-
-                    {/* banner */}
-                    <ul className="dropdown-menu__col -banner">
-                      <a href="">
-                        <Image
-                          src="/images/header/dropdown-menu-banner.png"
-                          alt="New product banner"
-                          width={300}
-                          height={300}
-                        />
-                      </a>
-                    </ul>
-                  </ul>
-                </li>
-                {/* BLOG */}
-                {/* <li>
-                  <a href="">Blog</a>
-                </li>
-                <li>
-                  <a href="">Contact</a>
-                </li> */}
-              </ul>
+              {/* ... navigation items ... */}
             </div>
           </div>
 
-          {/* Desktop Menu Functions */}
+          {/* Search Icon */}
           <div className="hidden lg:flex items-center space-x-4">
             <button
               className="menu-icon"
@@ -175,35 +124,96 @@ const Navbar = () => {
                 height={18}
               />
             </button>
-
-            {/* <a href="" className="menu-icon">
-              <Image
-                src="/images/header/wishlist-icon.png"
-                alt="Wishlist Icon"
-                width={20}
-                height={20}
-              />
-            </a> */}
-
-            {/* <div className="menu-cart relative">
-              <a href="" className="flex items-center">
-                <Image
-                  src="/images/header/cart-icon.png"
-                  alt="Cart icon"
-                  width={20}
-                  height={20}
-                />
-                <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
-                  0
-                </span>
-              </a>
-            </div> */}
           </div>
         </div>
 
+        {/* Search Overlay dengan Card Products */}
+        {isSearchOpen && (
+          <div className="fixed top-0 left-0 right-0 bg-white shadow-lg z-50">
+            <div className="container mx-auto p-4">
+              <div className="relative">
+                {/* Search Input */}
+                <form onSubmit={handleSearch} className="relative">
+                  <input
+                    type="text"
+                    placeholder="Cari produk kosmetik apa?"
+                    className="w-full p-4 pr-12 border rounded-lg"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                  />
+                  <button
+                    type="button"
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2"
+                    onClick={() => setIsSearchOpen(false)}
+                  >
+                    <FontAwesomeIcon icon={faTimes} className="text-gray-500" />
+                  </button>
+                </form>
+
+                {/* Search Results */}
+                {searchQuery.length > 2 && (
+                  <div className="absolute w-full bg-white shadow-xl rounded-lg mt-2 max-h-[70vh] overflow-y-auto">
+                    {isLoading ? (
+                      <div className="p-4 text-center text-gray-500">
+                        Mencari produk...
+                      </div>
+                    ) : searchResults.length > 0 ? (
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+                        {searchResults.map((product) => (
+                          <Link
+                            href={`/product/${product.slug}`}
+                            key={product.id}
+                            className="flex bg-white rounded-lg overflow-hidden hover:shadow-md transition-shadow duration-200"
+                          >
+                            <div className="w-24 h-24 relative flex-shrink-0">
+                              <Image
+                                // src={product.imageUrl || "/images/product/1.png"}
+                                src={"/images/product/1.png"}
+                                alt={product.name}
+                                fill
+                                className="object-cover"
+                              />
+                            </div>
+                            <div className="flex-1 p-3">
+                              <div className="text-xs text-gray-500 mb-1">
+                                {product.category}
+                              </div>
+                              <h3 className="font-medium text-gray-900 text-sm mb-1 line-clamp-2">
+                                {product.name}
+                              </h3>
+                              <div className="flex items-center justify-between">
+                                <p className="text-rose-500 font-semibold text-sm">
+                                  {formatPrice(product.price)}
+                                </p>
+                                <div className="flex items-center">
+                                  <FontAwesomeIcon 
+                                    icon={faStar} 
+                                    className="text-yellow-400 w-3 h-3" 
+                                  />
+                                  <span className="text-xs text-gray-600 ml-1">
+                                    {product.rating}
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="p-4 text-center text-gray-500">
+                        Tidak ada produk yang ditemukan
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden fixed inset-0 bg-white z-50 overflow-y-auto">
+           <div className="lg:hidden fixed inset-0 bg-white z-50 overflow-y-auto">
             <div className="p-4">
               <div className="flex justify-between items-center mb-6">
                 <Link href="/">
@@ -221,7 +231,6 @@ const Navbar = () => {
                   <FontAwesomeIcon icon={faTimes} />
                 </button>
               </div>
-
               {/* Search bar in mobile menu */}
               <div className="mb-6">
                 <form onSubmit={handleSearch}>
@@ -247,152 +256,10 @@ const Navbar = () => {
                   </div>
                 </form>
               </div>
-              {/* <nav>
-                <ul className="space-y-4">
-                  <li>
-                    <details className="group">
-                      <summary className="flex justify-between items-center cursor-pointer text-xl font-bold text-slate-950">
-                        Home
-                        <FontAwesomeIcon icon={faAngleDown} />
-                      </summary>
-                      <ul className="pl-4 mt-2 space-y-2 overflow-hidden transition-all duration-300 max-h-0 group-open:max-h-96">
-                        <li>
-                          <a className="text-lg font-semibold text-slate-600" href="">Beauty Salon</a>
-                        </li>
-                        <li>
-                          <a className="text-lg font-semibold text-slate-600" href="">Makeup Salon</a>
-                        </li>
-                        <li>
-                          <a className="text-lg font-semibold text-slate-600" href="">Natural Shop</a>
-                        </li>
-                        <li>
-                          <a className="text-lg font-semibold text-slate-600" href="">Spa Shop</a>
-                        </li>
-                        <li>
-                          <a className="text-lg font-semibold text-slate-600" href="">Mask Shop</a>
-                        </li>
-                        <li>
-                          <a className="text-lg font-semibold text-slate-600" href="">Skincare Shop</a>
-                        </li>
-                      </ul>
-                    </details>
-                  </li>
-                  <li>
-                    <a className="text-xl font-bold text-slate-950" href="">
-                      Services
-                    </a>
-                  </li>
-                  <li>
-                    <a className="text-xl font-bold text-slate-950" href="">
-                      About
-                    </a>
-                  </li>
-                  <li>
-                    <details className="group">
-                      <summary className="flex justify-between items-center cursor-pointer text-xl font-bold text-slate-950">
-                        Shop
-                        <FontAwesomeIcon icon={faAngleDown} />
-                      </summary>
-                      <ul className="pl-4 mt-2 space-y-2 overflow-hidden transition-all duration-300 max-h-0 group-open:max-h-96">
-                        <li>
-                          <a className="text-lg font-semibold text-slate-600" href="">Shop Fullwidth 4 Columns</a>
-                        </li>
-                        <li>
-                          <a className="text-lg font-semibold text-slate-600" href="">Shop Grid 3 Columns</a>
-                        </li>
-                        <li>
-                          <a className="text-lg font-semibold text-slate-600" href="">Product Detail</a>
-                        </li>
-                        <li>
-                          <a className="text-lg font-semibold text-slate-600" href="">Shopping Cart</a>
-                        </li>
-                        <ul className="dropdown-menu__col -banner">
-                          <a href="">
-                            <Image
-                              src="/images/header/dropdown-menu-banner.png"
-                              alt="New product banner"
-                              width={300}
-                              height={300}
-                            />
-                          </a>
-                        </ul>
-                      </ul>
-                    </details>
-                  </li>
-                  <li>
-                    <a className="text-xl font-bold text-slate-950" href="">
-                      Blog
-                    </a>
-                  </li>
-                  <li>
-                    <a className="text-xl font-bold text-slate-950" href="">
-                      Contact
-                    </a>
-                  </li>
-                </ul>
-              </nav> */}
-              {/* Mobile Menu Footer with Cart and Wishlist */}
-              {/* <div className="mt-8 pt-4 border-t">
-                <div className="space-y-4">
-                  <a href="" className="flex items-center space-x-2">
-                    <Image
-                      src="/images/header/wishlist-icon.png"
-                      alt="Wishlist Icon"
-                      width={20}
-                      height={20}
-                    />
-                    <span className="text-lg font-semibold text-slate-900">Wishlist</span>
-                  </a>
-                  <a href="" className="flex items-center space-x-2">
-                    <Image
-                      src="/images/header/cart-icon.png"
-                      alt="Cart icon"
-                      width={20}
-                      height={20}
-                    />
-                    <span className="text-lg font-semibold text-slate-900">Cart (0)</span>
-                  </a>
-                </div>
-              </div> */}
             </div>
           </div>
         )}
-
-        {/* Search Overlay */}
-        {isSearchOpen && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-            <div className="bg-white p-4 rounded-lg w-full max-w-2xl mx-4 relative">
-              <button
-                className="absolute -top-10 right-0 text-white text-2xl"
-                onClick={() => setIsSearchOpen(false)}
-              >
-                <FontAwesomeIcon icon={faTimes} />
-              </button>
-              <form onSubmit={handleSearch}>
-                <div className="relative">
-                  <input
-                    type="text"
-                    placeholder="Cari produk kosmetik apa?"
-                    className="w-full p-4 border rounded-lg pr-12"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                  />
-                  <button
-                    type="submit"
-                    className="absolute right-4 top-1/2 transform -translate-y-1/2"
-                  >
-                    <Image
-                      src="/images/header/search-icon.png"
-                      alt="Search icon"
-                      width={18}
-                      height={18}
-                    />
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        )}
+      
       </div>
     </div>
   );
