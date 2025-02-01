@@ -1,76 +1,76 @@
-"use client"
+"use client";
 
-import { useState, type FormEvent, useEffect } from "react"
-import Link from "next/link"
-import Image from "next/image"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faTimes, faStar, faSearch } from "@fortawesome/free-solid-svg-icons"
+import { useState, type FormEvent, useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes, faStar, faSearch } from "@fortawesome/free-solid-svg-icons";
 
 interface Product {
-  id: number
-  name: string
-  description: string
-  price: number
-  category: string
-  imageUrl: string
-  rating: number
-  slug: string
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  category: string;
+  imageUrl: string;
+  rating: number;
+  slug: string;
 }
 
 const Navbar = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [isSearchOpen, setIsSearchOpen] = useState(false)
-  const [searchQuery, setSearchQuery] = useState("")
-  const [searchResults, setSearchResults] = useState<Product[]>([])
-  const [isLoading, setIsLoading] = useState(false)
-  const [allProducts, setAllProducts] = useState<Product[]>([])
-  const [showMobileResults, setShowMobileResults] = useState(false)
-  const [isMobileSearchActive, setIsMobileSearchActive] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [allProducts, setAllProducts] = useState<Product[]>([]);
+  const [, setShowMobileResults] = useState(false);
+  const [isMobileSearchActive, setIsMobileSearchActive] = useState(false);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("/api/productTab")
+        const response = await fetch("/api/productTab");
         if (!response.ok) {
-          throw new Error("Failed to fetch products")
+          throw new Error("Failed to fetch products");
         }
-        const data = await response.json()
-        setAllProducts(data)
+        const data = await response.json();
+        setAllProducts(data);
       } catch (error) {
-        console.error("Error fetching products:", error)
+        console.error("Error fetching products:", error);
       }
-    }
+    };
 
-    fetchProducts()
-  }, [])
+    fetchProducts();
+  }, []);
 
   const searchProducts = (query: string) => {
-    setIsLoading(true)
+    setIsLoading(true);
     const filteredProducts = allProducts.filter(
       (product) =>
         product.name.toLowerCase().includes(query.toLowerCase()) ||
-        product.category.toLowerCase().includes(query.toLowerCase()),
-    )
-    setSearchResults(filteredProducts)
-    setIsLoading(false)
-    setShowMobileResults(true)
-  }
+        product.category.toLowerCase().includes(query.toLowerCase())
+    );
+    setSearchResults(filteredProducts);
+    setIsLoading(false);
+    setShowMobileResults(true);
+  };
 
   useEffect(() => {
     if (searchQuery.length > 2) {
-      searchProducts(searchQuery)
+      searchProducts(searchQuery);
     } else {
-      setSearchResults([])
-      setShowMobileResults(false)
+      setSearchResults([]);
+      setShowMobileResults(false);
     }
-  }, [searchQuery])
+  }, [searchQuery]);
 
   const handleSearch = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+    e.preventDefault();
     if (searchQuery.trim()) {
-      searchProducts(searchQuery)
+      searchProducts(searchQuery);
     }
-  }
+  };
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat("id-ID", {
@@ -78,8 +78,8 @@ const Navbar = () => {
       currency: "IDR",
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
-    }).format(price)
-  }
+    }).format(price);
+  };
 
   // Component for search results that can be reused for both mobile and desktop
   const SearchResults = () => (
@@ -94,22 +94,38 @@ const Navbar = () => {
               key={product.id}
               className="flex bg-white rounded-lg overflow-hidden hover:shadow-md transition-shadow duration-200"
               onClick={() => {
-                setShowMobileResults(false)
-                setIsMobileMenuOpen(false)
-                setSearchQuery("")
+                setShowMobileResults(false);
+                setIsMobileMenuOpen(false);
+                setSearchQuery("");
               }}
             >
               <div className="w-24 h-24 relative flex-shrink-0">
-                <Image src={"/images/product/1.png"} alt={product.name} fill className="object-cover" />
+                <Image
+                  src={"/images/product/1.png"}
+                  alt={product.name}
+                  fill
+                  className="object-cover"
+                />
               </div>
               <div className="flex-1 p-3">
-                <div className="text-xs text-gray-500 mb-1">{product.category}</div>
-                <h3 className="font-medium text-gray-900 text-sm mb-1 line-clamp-2">{product.name}</h3>
+                <div className="text-xs text-gray-500 mb-1">
+                  {product.category}
+                </div>
+                <h3 className="font-medium text-gray-900 text-sm mb-1 line-clamp-2">
+                  {product.name}
+                </h3>
                 <div className="flex items-center justify-between">
-                  <p className="text-rose-500 font-semibold text-sm">{formatPrice(product.price)}</p>
+                  <p className="text-rose-500 font-semibold text-sm">
+                    {formatPrice(product.price)}
+                  </p>
                   <div className="flex items-center">
-                    <FontAwesomeIcon icon={faStar} className="text-yellow-400 w-3 h-3" />
-                    <span className="text-xs text-gray-600 ml-1">{product.rating}</span>
+                    <FontAwesomeIcon
+                      icon={faStar}
+                      className="text-yellow-400 w-3 h-3"
+                    />
+                    <span className="text-xs text-gray-600 ml-1">
+                      {product.rating}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -117,22 +133,26 @@ const Navbar = () => {
           ))}
         </div>
       ) : (
-        <div className="p-4 text-center text-gray-500">Tidak ada produk yang ditemukan</div>
+        <div className="p-4 text-center text-gray-500">
+          Tidak ada produk yang ditemukan
+        </div>
       )}
     </div>
-  )
+  );
 
   const MobileSearchOverlay = () => (
     <div className="fixed inset-0 bg-white z-50 overflow-y-auto">
       <div className="p-4">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-lg font-semibold text-slate-700">Search Products</h2>
+          <h2 className="text-lg font-semibold text-slate-700">
+            Search Products
+          </h2>
           <button
             className="text-2xl"
             onClick={() => {
-              setIsMobileSearchActive(false)
-              setSearchQuery("")
-              setShowMobileResults(false)
+              setIsMobileSearchActive(false);
+              setSearchQuery("");
+              setShowMobileResults(false);
             }}
           >
             <FontAwesomeIcon icon={faTimes} />
@@ -148,7 +168,10 @@ const Navbar = () => {
               onChange={(e) => setSearchQuery(e.target.value)}
               autoFocus
             />
-            <button type="submit" className="absolute right-3 top-1/2 transform -translate-y-1/2">
+            <button
+              type="submit"
+              className="absolute right-3 top-1/2 transform -translate-y-1/2"
+            >
               <FontAwesomeIcon icon={faSearch} className="text-gray-400" />
             </button>
           </div>
@@ -156,17 +179,25 @@ const Navbar = () => {
         {searchQuery.length > 2 && <SearchResults />}
       </div>
     </div>
-  )
+  );
 
   return (
     <div className="menu -style-3 relative">
       <div className="container">
         <div className="menu__wrapper flex flex-wrap items-center justify-between">
           <Link href="/">
-            <Image src="/images/logo-anlins.png" alt="Logo" width={150} height={50} />
+            <Image
+              src="/images/logo-anlins.png"
+              alt="Logo"
+              width={150}
+              height={50}
+            />
           </Link>
 
-          <button className="lg:hidden" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+          <button
+            className="lg:hidden"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
             <div className="w-6 h-0.5 bg-black mb-1"></div>
             <div className="w-6 h-0.5 bg-black mb-1"></div>
             <div className="w-6 h-0.5 bg-black"></div>
@@ -181,8 +212,8 @@ const Navbar = () => {
                 className="w-full p-3 pr-10 border rounded-lg text-sm"
                 value={searchQuery}
                 onChange={(e) => {
-                  setSearchQuery(e.target.value)
-                  setIsMobileSearchActive(true)
+                  setSearchQuery(e.target.value);
+                  setIsMobileSearchActive(true);
                 }}
                 onFocus={() => setIsMobileSearchActive(true)}
               />
@@ -197,15 +228,25 @@ const Navbar = () => {
           <div className="hidden lg:block">
             <div className="navigator -black mt-2">
               <ul>
-                <li className="relative">{/* Your existing navigation items */}</li>
+                <li className="relative">
+                  {/* Your existing navigation items */}
+                </li>
               </ul>
             </div>
           </div>
 
           {/* Desktop Search Icon */}
           <div className="hidden lg:flex items-center space-x-4">
-            <button className="menu-icon" onClick={() => setIsSearchOpen(!isSearchOpen)}>
-              <Image src="/images/header/search-icon.png" alt="Search icon" width={18} height={18} />
+            <button
+              className="menu-icon"
+              onClick={() => setIsSearchOpen(!isSearchOpen)}
+            >
+              <Image
+                src="/images/header/search-icon.png"
+                alt="Search icon"
+                width={18}
+                height={18}
+              />
             </button>
           </div>
         </div>
@@ -227,8 +268,8 @@ const Navbar = () => {
                     type="button"
                     className="absolute right-4 top-1/2 transform -translate-y-1/2"
                     onClick={() => {
-                      setIsSearchOpen(false)
-                      setSearchQuery("")
+                      setIsSearchOpen(false);
+                      setSearchQuery("");
                     }}
                   >
                     <FontAwesomeIcon icon={faTimes} className="text-gray-500" />
@@ -251,20 +292,24 @@ const Navbar = () => {
             <div className="p-4">
               <div className="flex justify-between items-center mb-6">
                 <Link href="/">
-                  <Image src="/images/logo-anlins.png" alt="Logo" width={150} height={50} />
+                  <Image
+                    src="/images/logo-anlins.png"
+                    alt="Logo"
+                    width={150}
+                    height={50}
+                  />
                 </Link>
                 <button
                   className="text-2xl"
                   onClick={() => {
-                    setIsMobileMenuOpen(false)
-                    setSearchQuery("")
-                    setShowMobileResults(false)
+                    setIsMobileMenuOpen(false);
+                    setSearchQuery("");
+                    setShowMobileResults(false);
                   }}
                 >
                   <FontAwesomeIcon icon={faTimes} />
                 </button>
               </div>
-              
             </div>
           </div>
         )}
@@ -272,8 +317,7 @@ const Navbar = () => {
         {isMobileSearchActive && <MobileSearchOverlay />}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
-
+export default Navbar;
