@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -8,6 +9,9 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily:{
+        title: ["League Spartan"],
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",

@@ -9,16 +9,28 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-brands-svg-icons": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "@neondatabase/serverless": "^0.10.4",
+    "@prisma/client": "^6.2.1",
+    "@types/jquery": "^3.5.32",
+    "@types/slick-carousel": "^1.6.40",
     "dotenv": "^16.4.7",
+    "jquery": "^3.7.1",
     "next": "15.1.4",
+    "pg": "^8.13.1",
+    "prisma": "^6.2.1",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "slick-carousel": "^1.8.1",
+    "swiper": "^11.2.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@types/node": "^20",
-    "@types/react": "^19",
+    "@types/react": "^19.0.4",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.1.4",
