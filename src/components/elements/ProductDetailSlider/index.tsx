@@ -69,6 +69,8 @@ export default function ProductDetailSlider() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
   const swiperRef = useRef<SwiperType | null>(null);
+  //base url
+  // const BASE_IMAGE_URL = "https://iralj7kgpu64pokh.public.blob.vercel-storage.com/productImage/";
 
   useEffect(() => {
     const fetchData = async () => {
@@ -79,6 +81,7 @@ export default function ProductDetailSlider() {
           return;
         }
         const data: Product[] = await response.json();
+        setData(data.sort((a, b) => a.id - b.id));
         setData(data);
         setError(null);
       } catch (error) {
@@ -108,11 +111,11 @@ export default function ProductDetailSlider() {
       <div className="container">
         <div className="product-tab__header">
           <h5>Product Terbaru</h5>
-          <div className="product-tab-slide__header__controller">
+          {/* <div className="product-tab-slide__header__controller">
             <Link href="/shop" className="btn -white">
               View all
             </Link>
-          </div>
+          </div> */}
         </div>
 
         <div className="product-tab__content relative">
@@ -174,14 +177,18 @@ export default function ProductDetailSlider() {
                       className="product-thumb__image"
                       href={`/product/${product.slug}`}
                     >
+                      {/* gambar setelah di hover */}
                       <Image
-                        src="/images/product/1.png"
+                        // src={`${BASE_IMAGE_URL}${product.imageUrl}`}
+                        src={product.imageUrl}
                         alt="Product image"
                         width={500}
                         height={500}
                       />
+                      {/* gambar sebelum di hover */}
                       <Image
-                        src="/images/product/2.png"
+                        // src={`${BASE_IMAGE_URL}${product.imageUrl}`}
+                        src={product.imageUrl}
                         alt="Product image"
                         width={500}
                         height={500}

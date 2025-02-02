@@ -32,6 +32,9 @@ export default function ProductDetail() {
   // const { id } = params; // Ini adalah parameter 'id' dari URL
   const params = useParams(); // Ambil params dari URL
   const slug = params?.slug; // Ambil slug dari URL
+  //base url
+  // const BASE_IMAGE_URL =
+  //   "https://iralj7kgpu64pokh.public.blob.vercel-storage.com/productImage/";
 
   // Cek slug di console
   useEffect(() => {
@@ -75,7 +78,8 @@ export default function ProductDetail() {
                   <div className="product-detail__slide-two__big">
                     <div className="slider__item">
                       <Image
-                        src="/images/product/1.png"
+                        // src={`${BASE_IMAGE_URL}${product.imageUrl}`}
+                        src={product.imageUrl}
                         alt="Product image"
                         width={500}
                         height={500}
@@ -98,17 +102,7 @@ export default function ProductDetail() {
 
                     <div className="divider"></div>
                     <div className="product-detail__content__footer">
-                      <ul>
-                        <li>Brand:gucci</li>
-                        <li>Product code: PM 01</li>
-                        <li>Reward point: 30</li>
-                        <li>Availability: In Stock</li>
-                      </ul>
-                      {/* action */}
-                      <ProductActions product={product} />
-
-                      <div className="divider"></div>
-                      <div className="product-detail__content__tab">
+                     <div className="product-detail__content__tab">
                         <ul className="tab-content__header">
                           <li className="tab-switcher" data-tab-index="0">
                             Description
@@ -123,6 +117,11 @@ export default function ProductDetail() {
                           </div>
                         </div>
                       </div>
+                      {/* action */}
+                      <ProductActions product={product} />
+
+                      <div className="divider"></div>
+                      
                     </div>
                   </div>
                 </div>

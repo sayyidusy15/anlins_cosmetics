@@ -23,11 +23,7 @@ export default function Ingredients() {
           console.error("Failed to fetch ingredients:", response.statusText);
           return;
         }
-        const data: Ingredient[] = await response.json();
-        // Ambil hanya 3 data pertama
-        const limitedData = data.slice(0, 3);
-
-        setData(limitedData);
+        const data: Ingredient[] = await response.json(); 
         // console.log('Fetched Data:', data);
         setData(data);
       } catch (error) {
@@ -47,15 +43,12 @@ export default function Ingredients() {
       <div className="container">
         <div className="section-title -center mb-[1.875em] ">
           <h2>Kenali bahan produk kami</h2>
-          <Link href="/ingredient" className="btn -white">
-            Lihat semua
-          </Link>
         </div>
 
         <div className="introduction-six__wrapper">
           <div className="row">
             {/* card start */}
-            {data.slice(0, 3).map((ingredient, index) => (
+            {data.map((ingredient, index) => (
               <div key={index} className="col-12 col-md-6 col-lg-4">
                 <div className="introduction-six__wrapper__item">
                   <div className="introduction-six__wrapper__item__image">

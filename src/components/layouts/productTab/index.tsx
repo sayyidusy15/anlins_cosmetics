@@ -63,6 +63,9 @@ export default function ProductTab() {
   const [isLoading, setIsLoading] = useState(true);
   //penanganan error
   const [error, setError] = useState<Error | null>(null);
+  //base url
+  // const BASE_IMAGE_URL =
+  //   "https://iralj7kgpu64pokh.public.blob.vercel-storage.com/productImage/";
 
   // ambil data product dari API
   useEffect(() => {
@@ -75,6 +78,7 @@ export default function ProductTab() {
           return;
         }
         const data: Product[] = await response.json();
+        setData(data.sort((a, b) => a.id - b.id));
         // console.log("Fetched Data:", data);
         setData(data);
         setError(null); //clear error on success
@@ -111,7 +115,7 @@ export default function ProductTab() {
       <div className="container">
         {/* Product Tab Header */}
         <div className="product-tab__header">
-          <h5>Product Terbaru</h5>
+          <h5>Product Tersedia</h5>
           <div className="product-tab-slide__header__controller">
             {/* <ul>
                 <li className="active"><a href="#">all</a></li>
@@ -121,9 +125,9 @@ export default function ProductTab() {
                 <li><a href="#">set</a></li>
               </ul> */}
 
-            <a className="btn -white" href="shop-fullwidth-4col.html">
+            {/* <a className="btn -white" href="shop-fullwidth-4col.html">
               View all
-            </a>
+            </a> */}
           </div>
         </div>
 
@@ -150,14 +154,19 @@ export default function ProductTab() {
                         className="product-thumb__image"
                         href={`/product/${product.slug}`}
                       >
+                        {/* gambar setelah di hover */}
                         <Image
-                          src="/images/product/1.png"
+                          // src={`${BASE_IMAGE_URL}${product.imageUrl}`}
+                          src={product.imageUrl}
                           alt="Product image"
                           width={500}
                           height={500}
                         />
+
+                        {/* gambar sebelum di hover */}
                         <Image
-                          src="/images/product/2.png"
+                          // src={`${BASE_IMAGE_URL}${product.imageUrl}`}
+                          src={product.imageUrl}
                           alt="Product image"
                           width={500}
                           height={500}
