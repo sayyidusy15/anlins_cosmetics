@@ -38,6 +38,7 @@ export default function RootLayout({
       </head>
       <body>
         <Navbar />
+        
         {/* <NavbarNew /> */}
         <main>{children}</main>
         <Footer />

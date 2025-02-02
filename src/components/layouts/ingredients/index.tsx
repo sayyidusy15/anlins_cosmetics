@@ -18,7 +18,7 @@ export default function Ingredients() {
     const fetchData = async () => {
       try {
         const response = await fetch("/api/ingredients");
-        console.log("API Response:", response);
+        // console.log("API Response:", response);
         if (!response.ok) {
           console.error("Failed to fetch ingredients:", response.statusText);
           return;
@@ -64,6 +64,7 @@ export default function Ingredients() {
                       alt="Rosehip Seed Oil"
                       width={100}
                       height={100}
+                      priority
                     />
                   </div>
                   <div className="introduction-six__wrapper__item__content">

@@ -72,9 +72,9 @@ export default function ProductTab() {
     const fetchData = async () => {
       try {
         const response = await fetch("/api/productTab");
-        console.log("API Response:", response);
+        // console.log("API Response:", response);
         if (!response.ok) {
-          console.error("Failed to fetch products:", response.statusText);
+          // console.error("Failed to fetch products:", response.statusText);
           return;
         }
         const data: Product[] = await response.json();
@@ -114,7 +114,7 @@ export default function ProductTab() {
     <div className="product-tab -style-2">
       <div className="container">
         {/* Product Tab Header */}
-        <div className="product-tab__header">
+        <div className="product-tab__header mt-5">
           <h5>Product Tersedia</h5>
           <div className="product-tab-slide__header__controller">
             {/* <ul>
@@ -161,6 +161,7 @@ export default function ProductTab() {
                           alt="Product image"
                           width={500}
                           height={500}
+                          priority
                         />
 
                         {/* gambar sebelum di hover */}
@@ -170,6 +171,7 @@ export default function ProductTab() {
                           alt="Product image"
                           width={500}
                           height={500}
+                          priority
                         />
                       </Link>
                       {/* icon hover */}

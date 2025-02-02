@@ -3623,7 +3623,8 @@ ul {
       left: 0;
       right: auto; }
   .menu.-style-3 {
-    background-color: #fff;
+    /* background-color: #fff; */
+    background-color: #000;
     padding: 0.9375em 0; }
     .menu.-style-3 .menu-logo img {
       height: 1.875em;
@@ -4286,7 +4287,7 @@ ul {
 .product-tab.-style-1, .product-tab.slider.-style-5 {
   margin-bottom: 6.25rem; }
   .product-tab.-style-1 .product-tab__header, .product-tab.slider.-style-5 .product-tab__header {
-    margin-bottom: 1.875em; }
+    margin-bottom: 1em; }
     .product-tab.-style-1 .product-tab__header ul, .product-tab.slider.-style-5 .product-tab__header ul {
       text-align: center; }
       .product-tab.-style-1 .product-tab__header ul li, .product-tab.slider.-style-5 .product-tab__header ul li {

@@ -184,6 +184,7 @@ export default function ProductDetailSlider() {
                         alt="Product image"
                         width={500}
                         height={500}
+                        priority
                       />
                       {/* gambar sebelum di hover */}
                       <Image
@@ -192,6 +193,7 @@ export default function ProductDetailSlider() {
                         alt="Product image"
                         width={500}
                         height={500}
+                        priority
                       />
                     </Link>
                     <div className="product-thumb__actions">

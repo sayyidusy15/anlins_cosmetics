@@ -101,17 +101,17 @@ const Navbar = () => {
             >
               <div className="w-24 h-24 relative flex-shrink-0">
                 <Image
-                  src={"/images/product/1.png"}
+                  src={product.imageUrl}
                   alt={product.name}
                   fill
                   className="object-cover"
                 />
               </div>
               <div className="flex-1 p-3">
-                <div className="text-xs text-gray-500 mb-1">
+                <div className="text-xs text-black mb-1">
                   {product.category}
                 </div>
-                <h3 className="font-medium text-gray-900 text-sm mb-1 line-clamp-2">
+                <h3 className="font-medium text-black text-sm mb-1 line-clamp-2">
                   {product.name}
                 </h3>
                 <div className="flex items-center justify-between">
@@ -187,10 +187,11 @@ const Navbar = () => {
         <div className="menu__wrapper flex flex-wrap items-center justify-between">
           <Link href="/">
             <Image
-              src="/images/logo-anlins.png"
+              src="/images/logo_bg_dark.png"
               alt="Logo"
               width={150}
               height={50}
+              priority
             />
           </Link>
 
@@ -198,9 +199,9 @@ const Navbar = () => {
             className="lg:hidden"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            <div className="w-6 h-0.5 bg-black mb-1"></div>
-            <div className="w-6 h-0.5 bg-black mb-1"></div>
-            <div className="w-6 h-0.5 bg-black"></div>
+            <div className="w-6 h-0.5 bg-white mb-1"></div>
+            <div className="w-6 h-0.5 bg-white mb-1"></div>
+            <div className="w-6 h-0.5 bg-white"></div>
           </button>
 
           {/* Search Bar - Mobile */}
@@ -226,7 +227,7 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:block">
-            <div className="navigator -black mt-2">
+            <div className="navigator -white mt-2">
               <ul>
                 <li className="relative">
                   {/* Your existing navigation items */}
@@ -241,12 +242,14 @@ const Navbar = () => {
               className="menu-icon"
               onClick={() => setIsSearchOpen(!isSearchOpen)}
             >
-              <Image
+              {/* <Image
                 src="/images/header/search-icon.png"
                 alt="Search icon"
                 width={18}
                 height={18}
-              />
+              /> */}
+               <FontAwesomeIcon icon={faSearch} className="text-white w-[18px] h-[18px]" />
+
             </button>
           </div>
         </div>
