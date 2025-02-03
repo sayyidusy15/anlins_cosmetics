@@ -4245,6 +4245,7 @@ ul {
       color: #fff; }
   @media only screen and (max-width: 768px) {
     .product-detail__content .product-detail__controller {
+      justify-content: center; 
       font-size: 13px; }
       .product-detail__content .product-detail__controller .quantity-controller {
         margin-bottom: 0.76923em; }
