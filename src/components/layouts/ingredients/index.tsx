@@ -26,7 +26,6 @@ export default function Ingredients() {
         const data: Ingredient[] = await response.json();
         // Ambil hanya 3 data pertama
         const limitedData = data.slice(0, 3);
-
         setData(limitedData);
         // console.log('Fetched Data:', data);
         setData(data);

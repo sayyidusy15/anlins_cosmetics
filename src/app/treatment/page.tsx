@@ -1,8 +1,9 @@
 "use client";
 import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 export default function TreatmentPage() {
   return (
-    
     <div id="content">
       <div className="breadcrumb">
         <div className="container">
@@ -42,7 +43,8 @@ export default function TreatmentPage() {
                     </div>
                     <div className="image__item">
                       <div className="wrapper">
-                        <Image
+                        {/* Gambar kecil di depan */}
+                        {/* <Image
                           data-depth="0.2"
                           data-invert-x="true"
                           data-invert-y="true"
@@ -50,7 +52,7 @@ export default function TreatmentPage() {
                           alt="image"
                           width={500}
                           height={500}
-                        />
+                        /> */}
                       </div>
                     </div>
                   </div>
@@ -120,7 +122,8 @@ export default function TreatmentPage() {
                     </div>
                     <div className="image__item">
                       <div className="wrapper">
-                        <Image
+                        {/* Gambar kecil di depan */}
+                        {/* <Image
                           data-depth="0.2"
                           data-invert-x="true"
                           data-invert-y="true"
@@ -128,7 +131,7 @@ export default function TreatmentPage() {
                           alt="image"
                           width={500}
                           height={500}
-                        />
+                        /> */}
                       </div>
                     </div>
                   </div>
@@ -160,7 +163,8 @@ export default function TreatmentPage() {
                       dolore magna aliqua.
                     </li>
                     <li>
-                      <i className="fas fa-check"></i>Quis ipsum suspendisse
+                      <FontAwesomeIcon icon={faCheck} className="text-red-500"/>
+                      Quis ipsum suspendisse
                       ultrices gravida.
                     </li>
                   </ul>
