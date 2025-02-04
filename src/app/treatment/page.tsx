@@ -59,74 +59,92 @@ export default function TreatmentPage() {
   };
 
   return (
-    <div id="content">
+    <div className="w-full min-h-screen bg-white">
+      {/* Breadcrumb */}
       <div className="breadcrumb">
         <div className="container">
-          <h2>Services</h2>
-          <ul>
-            <li>Home</li>
-            <li className="active">Services</li>
-          </ul>
+          <h2>Shop</h2>
         </div>
       </div>
-
-      <div className="shop">
-        <div className="container">
+  
+      {/* Content */}
+      <div className="">
+        <div className="container mx-auto px-4">
           {data.map((treatment, index) => (
-            <div key={index} className="services__item">
-              <div className="row">
-                <div className="col-12 col-md-6">
-                  <div className="services__item__image">
-                    <div className="services__item__image__background">
+            <div 
+              key={index}
+              className="mb-16 last:mb-0 bg-white rounded-lg shadow-lg overflow-hidden"
+            >
+              <div className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}>
+                {/* Image Section */}
+                <div className="w-full lg:w-1/2 relative">
+                  {/* Background Image */}
+                  <div className="absolute inset-0 z-0">
+                    <Image
+                      src="/images/introduction/IntroductionThree/bg.png"
+                      alt="background"
+                      layout="fill"
+                      objectFit="cover"
+                      className="opacity-30"
+                    />
+                  </div>
+                  {/* Main Image */}
+                  <div className="relative z-10 p-8 md:p-12">
+                    <div className="aspect-square relative">
                       <Image
-                        src="/images/introduction/IntroductionThree/bg.png"
-                        alt="background"
-                        width={500}
-                        height={500}
+                        src={treatment.imageUrl}
+                        alt={treatment.name}
+                        layout="fill"
+                        objectFit="contain"
+                        className="transform hover:scale-105 transition-transform duration-300"
                       />
-                    </div>
-                    <div className="services__item__image__detail">
-                      <div className="image__item">
-                        <div className="wrapper">
-                          <Image
-                            data-depth="0.3"
-                            src="/images/contact/1_1.png"
-                            alt="image"
-                            width={500}
-                            height={500}
-                          />
-                        </div>
-                      </div>
-                      <div className="image__item">
-                        <div className="wrapper">
-                          {/* Gambar kecil di depan bisa ditambahkan di sini jika diperlukan */}
-                        </div>
-                      </div>
                     </div>
                   </div>
                 </div>
-                <div className="col-12 col-md-6">
-                  <div className="services__item__content">
-                    <div className="services__item__order">
-                      <h3>0{treatment.id}.</h3>
+  
+                {/* Content Section */}
+                <div className={`w-full lg:w-1/2 p-8 md:p-12 ${
+                  index % 2 === 0 ? 'lg:pl-12' : 'lg:pr-12'
+                }`}>
+                  <div className="space-y-6">
+                    {/* Treatment Number */}
+                    <div className="text-4xl font-bold text-gray-300">
+                      0{treatment.id}.
                     </div>
-                    <h2 className="services__item__title">{treatment.name}</h2>
-                    <p className="services__item__description">
+  
+                    {/* Title */}
+                    <h2 className="text-2xl md:text-3xl font-bold text-gray-800">
+                      {treatment.name}
+                    </h2>
+  
+                    {/* Description */}
+                    <p className="text-gray-600 leading-relaxed">
                       {treatment.description}
                     </p>
-                    {/* Bagian benefit yang sudah dimodifikasi */}
-                    <ul>
+  
+                    {/* Benefits List */}
+                    <ul className="space-y-3">
                       {getBenefits(treatment.benefit).map((item, benefitIndex) => (
-                        <li key={benefitIndex}>
+                        <li 
+                          key={benefitIndex}
+                          className="flex items-center space-x-3 text-gray-700"
+                        >
                           <FontAwesomeIcon
                             icon={faCheck}
-                            className="text-red-500"
+                            className="text-red-500 w-4 h-4 flex-shrink-0"
                           />
-                          {" "}{item}
+                          <span>{item}</span>
                         </li>
                       ))}
                     </ul>
-                    <a className="btn -white" href="#">
+  
+                    {/* Button */}
+                    <a
+                      href="#"
+                      className="inline-block px-8 py-3 bg-red-500 hover:bg-red-600 
+                               text-white font-semibold rounded-full transition-colors 
+                               duration-200 transform hover:scale-105"
+                    >
                       {treatment.btn || "Hubungi Kami"}
                     </a>
                   </div>

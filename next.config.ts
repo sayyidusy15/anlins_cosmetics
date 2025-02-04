@@ -13,6 +13,12 @@ const nextConfig: NextConfig = {
         hostname: "iralj7kgpu64pokh.public.blob.vercel-storage.com",
         pathname: "/ingredients/**", 
       },
+      {
+        protocol: "https",
+        hostname: "iralj7kgpu64pokh.public.blob.vercel-storage.com",
+        pathname: "/treatment/**", 
+      },
+
     ],
   },
 };
