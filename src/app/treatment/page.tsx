@@ -8,6 +8,7 @@ type Treatment = {
   id: number;
   name: string;
   description: string;
+  menu : string | string[];
   benefit: string | string[]; // Bisa menerima string atau array
   imageUrl: string;
   btn: string;
@@ -63,7 +64,7 @@ export default function TreatmentPage() {
       {/* Breadcrumb */}
       <div className="breadcrumb">
         <div className="container">
-          <h2>Shop</h2>
+          <h2>Treatment</h2>
         </div>
       </div>
   

@@ -43,11 +43,11 @@ model HomePageSlider{
 }
 
 model Treatment {
-  id          Int     @id @default(autoincrement())
+  id          Int      @id @default(autoincrement())
   name        String
   description String
-  benefit     Json
+  menu        Json
+  benefit     Json     
   imageUrl    String
   btn         String 
 }
-
