@@ -46,6 +46,8 @@ model Treatment {
   id          Int     @id @default(autoincrement())
   name        String
   description String
+  benefit     String
   imageUrl    String
+  btn         String 
 }
 
