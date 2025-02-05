@@ -1,6 +1,7 @@
 import Ingredients from "@/components/layouts/ingredients";
 import NavbarMobile from "@/components/layouts/navbarMobile";
 import ProductTab from "@/components/layouts/productTab";
+import Treatment from "@/components/layouts/treatment";
 // import Slider from "@/components/layouts/slider";
 // import Script from "next/script";
 
@@ -14,6 +15,7 @@ export default function Home() {
                 <div id="content">
                   {/* <Slider/> */}
                   <ProductTab/>
+                  <Treatment/>
                   <Ingredients/>
                   <NavbarMobile />
                 </div>

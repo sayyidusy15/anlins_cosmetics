@@ -14,7 +14,7 @@ type Treatment = {
   btn: string;
 };
 
-export default function TreatmentPage() {
+export default function Treatment() {
   const [data, setData] = useState<Treatment[]>([]);
 
   useEffect(() => {
@@ -75,17 +75,13 @@ export default function TreatmentPage() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-white">
-      {/* Breadcrumb */}
-      <div className="breadcrumb">
-        <div className="container">
-          <h2>Treatment</h2>
-        </div>
-      </div>
-
+    <div className=" container w-full bg-white mb-20">
       {/* Content */}
       <div>
         <div className="container mx-auto px-4">
+          <div className="section-title -center  ">
+            <h2>Treatment</h2>
+          </div>
           {data.map((treatment, index) => (
             <div
               key={index}
@@ -191,7 +187,6 @@ export default function TreatmentPage() {
                       </div>
                     </div>
 
-                    {/* Button */}
                     {/* Button */}
                     <a
                       href={`https://wa.me/00000?text=Halo, saya tertarik untuk menggunakan jasa treatment ${treatment.name}. Mohon informasi lebih lanjut.`}
