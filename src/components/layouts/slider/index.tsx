@@ -87,7 +87,7 @@ export default function Slider() {
             <div className="slider-background">
               <Image
                 className="slider-background"
-                src="/images/slider/SliderTwo/2.png"
+                src={HomePageSlider.imageUrl}
                 alt="Slider background"
                 width={1920}
                 height={1080}

@@ -53,7 +53,7 @@ export default function Footer() {
                   </a>
                 </li>
                 <li>
-                  <a href="https://instagram.com/">
+                  <a href="https://www.instagram.com/anlinsbeauty/">
                     <FontAwesomeIcon icon={faInstagram} />
                   </a>
                 </li>
@@ -72,17 +72,21 @@ export default function Footer() {
               <div className="footer__section -info">
                 <h5 className="footer-title">Kontak Info</h5>
                 <p>
-                  Address:<span>Kota Sukabumi</span>
+                  Kami buka setiap hari pada pukul 09:00 pagi dan tutup pukul 19:00 sore
                 </p>
                 <p>
-                  Phone:<span>+62 000-0000-000</span>
+                  Address:<span>JL Bhineka Karya Asri Village Blok V3 No.1 Sukabumi</span>
+                </p>
+                <p>
+                  Phone:<span>(+62)857-9386-9960</span>
                 </p>
                 <p>
                   Email:<span>Anlins@example.com</span>
                 </p>
                 <p>
-                  Opentime:<span>8.00am - 11.00.pm</span>
+                  Opentime:<span>09.00am - 19.00.pm</span>
                 </p>
+                
               </div>
             </div>
             {/* footer kolom ke-2 */}

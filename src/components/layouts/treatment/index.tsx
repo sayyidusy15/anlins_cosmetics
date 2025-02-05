@@ -189,7 +189,7 @@ export default function Treatment() {
 
                     {/* Button */}
                     <a
-                      href={`https://wa.me/00000?text=Halo, saya tertarik untuk menggunakan jasa treatment ${treatment.name}. Mohon informasi lebih lanjut.`}
+                      href={`https://wa.me/+6285793869960?text=Halo, saya tertarik untuk menggunakan jasa treatment ${treatment.name}. Mohon informasi lebih lanjut.`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-block px-8 py-3 bg-red-500 hover:bg-red-600 

@@ -11,7 +11,7 @@ type ProductActionProps = {
 
 const ProductActions: React.FC<ProductActionProps> = ({ product }) => {
   const [quantity, setQuantity] = useState<number>(1);
-  const whatsappNumber = "00000"; // Ganti dengan nomor WhatsApp yang sebenarnya
+  const whatsappNumber = "+6285793869960"; // Ganti dengan nomor WhatsApp yang sebenarnya
 
   const handleDecrease = () => {
     if (quantity > 1) {
